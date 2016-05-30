@@ -1,3 +1,20 @@
+= Aufteilung der Aufgaben
+
+==== Fabian
+* Artikel anhand der Bezeichnung suchen
+* Einen neuen Artikel anlegen
+
+==== Shanki 
+* Einen neuen Kunden registrieren
+* Kunden mit dem Nachnamen, seit-Datum, Geschlecht oder Mindestbestellmenge suchen
+
+==== Jannick
+* Eine neue Bestellung aufgeben
+* Bestellungen zur angegebenen Kundennummer suchen
+
+==== Sven
+* den REST ;-)
+
 = Hinweise zum Programmierbeispiel
 
 Jürgen Zimmermann <Juergen.Zimmermann@HS-Karlsruhe.de>
