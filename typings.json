@@ -1,0 +1,12 @@
+{
+  "name": "beispiel",
+  "version": false,
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20160305082308",
+    "moment": "registry:npm/moment#2.10.5+20160211003958"
+  },
+  "ambientDependencies": {
+    "jwt-decode": "registry:dt/jwt-decode#1.4.0+20160317120654",
+    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20160316155526"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "buecher": [
+    {
+      "_id": "000000000000000000000001",
+      "titel": "Alpha",
+      "rating": 4,
+      "art": "DRUCKAUSGABE",
+      "verlag": "OREILLY",
+      "datum": "2015-02-01",
+      "preis": 11.1,
+      "rabatt": 0.011,
+      "lieferbar": true,
+      "schlagwoerter": [
+        "SCHNULZE"
+      ]
+    },
+    {
+      "_id": "000000000000000000000002",
+      "titel": "Beta",
+      "rating": 2,
+      "art": "KINDLE",
+      "verlag": "PACKT",
+      "datum": "2015-02-02",
+      "preis": 22.2,
+      "rabatt": 0.022,
+      "lieferbar": true,
+      "schlagwoerter": [
+        "SCIENCE_FICTION"
+      ]
+    },
+    {
+      "_id": "000000000000000000000003",
+      "titel": "Gamma",
+      "rating": 1,
+      "art": "DRUCKAUSGABE",
+      "verlag": "PACKT",
+      "datum": "2015-02-03",
+      "preis": 33.3,
+      "rabatt": 0.033,
+      "lieferbar": true,
+      "schlagwoerter": [
+        "SCHNULZE",
+        "SCIENCE_FICTION"
+      ]
+    },
+    {
+      "_id": "000000000000000000000004",
+      "titel": "Delta",
+      "rating": 3,
+      "art": "KINDLE",
+      "verlag": "OREILLY",
+      "datum": "2015-02-04",
+      "preis": 44.4,
+      "rabatt": 0.044,
+      "lieferbar": true,
+      "schlagwoerter": []
+    },
+    {
+      "_id": "000000000000000000000005",
+      "titel": "Epsilon",
+      "rating": 2,
+      "art": "KINDLE",
+      "verlag": "PACKT",
+      "datum": "2015-02-05",
+      "preis": 55.5,
+      "rabatt": 0.055,
+      "lieferbar": true,
+      "schlagwoerter": [
+        "SCIENCE_FICTION"
+      ]
+    }
+  ],
+  "buecherA": [
+    {
+      "_id": "000000000000000000000001",
+      "titel": "Alpha",
+      "rating": 4,
+      "art": "DRUCKAUSGABE",
+      "verlag": "OREILLY",
+      "datum": "2015-02-01",
+      "preis": 11.1,
+      "rabatt": 0.011,
+      "lieferbar": true,
+      "schlagwoerter": [
+        "SCHNULZE"
+      ]
+    }
+  ]
+}

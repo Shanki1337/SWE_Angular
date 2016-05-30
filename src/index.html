@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<!--
+ * Copyright (C) 2015 - 2016 Juergen Zimmermann, Hochschule Karlsruhe
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Neue CSS-Funktionalitaet, wie z.B. CSS Grid Layout:
+    chrome://flags/#enable-experimental-web-platform-features
+-->
+
+<html>
+    <head>
+        <!-- http://de.selfhtml.org/html/kopfdaten/meta.htm -->
+        <!-- http://wiki.selfhtml.org/wiki/HTML/Kopfdaten/meta -->
+        <!-- http://wiki.whatwg.org/wiki/MetaExtensions -->
+        <meta charset="utf-8">
+        <!-- fuer aeltere Versionen von IE -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- Viewport ist der Anzeigebereich im Fenster der Anwendung, der fuer die Darstellung tatsaechlich zur Verfuegung steht. -->
+        <!-- Bei mobilen Geraeten ist der Viewport oft auf eine Breite von 980 Pixeln eingestellt. -->
+        <!-- Deshalb ist eine Website zwar komplett zu sehen, aber die Inhalte sind sehr klein und Schriften nicht lesbar. -->
+        <!-- Anfaenglicher Zoomgrad ist 1.0, so dass die Seite 1:1 dargestellt wird -->
+        <!-- Ggf. zusaetzlich user-scalable=no -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <!-- https/8443 für Express/Node.js, http/8443 fuer jsonserver, wss/443 fuer browser-sync -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'self'; connect-src 'self' https://localhost:8443/ http://localhost:8443/ wss://localhost/; img-src 'self' data:; style-src 'unsafe-inline' 'self'; font-src 'self'"/>
+        <meta name="author" content="J&uuml;rgen Zimmermann">
+        <meta name="keywords" content="Software Engineering,REST,AngularJS,RxJS,SystemJS,Bootstrap,Font Awesome,Chart.js,lodash,animate.css,gulp">
+
+        <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+        <!-- ggf. einpflegen mit gulp-inject -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <!-- In Produktion: von einem CDN (= Common Delivery Network) laden, z.B. http://cdnjs.com
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/VERSION/js/bootstrap.min.js" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/VERSION/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/VERSION/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/VERSION/animate.min.css" rel="stylesheet">
+        -->
+
+        <base href="/">
+        <title>Beispiel</title>
+    </head>
+
+    <!-- CSS-Klasse von Bootstrap -->
+    <!--     http://getbootstrap.com/css -->
+    <!--     http://www.w3schools.com/bootstrap -->
+    <!-- Material Design wird voraussichtlich ab Q3 2016 unterstuetzt -->
+    <body class="container-fluid">
+        <!-- Platzhalter fuer die eigentliche Webanwendung -->
+        <app>Entwicklermodus: &nbsp; <i class="fa fa-spin fa-spinner"></i> &nbsp; Bitte warten...</app>
+
+        <!-- zone.js stellt einen Ausfuehrungskontext bereit, um effizient zu
+             ermitteln, wann eine View aktualisiert werden muss -->
+        <script src="js/zone.min.js"></script>
+        <!-- reflect-metadata ermoeglicht DI durch Decorators -->
+        <script src="js/Reflect.js"></script>
+
+        <!-- TODO Als Alternative zu SystemJS wird es ein CommonJS Bundle fuer WebPack geben -->
+        <!--      https://docs.google.com/document/d/150lerb1LmNLuau_a_EznPV1I1UHMTbEl61t4hZ7ZpS0/edit (5. Okt. 2015) -->
+        <script src="js/system.js"></script>
+
+        <!--
+        <script src="js/zone.js"></script>
+        <script src="js/long-stack-trace-zone.js"></script>
+        <script src="js/system.src.js"></script>
+        -->
+
+        <script>
+            // https://github.com/systemjs/systemjs/blob/master/docs/overview.md
+            System.config({
+                // https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#map
+                map: {
+                   'moment': 'js/moment-with-locales.min.js',
+                   'lodash': 'js/lodash.js'
+                },
+                // https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#paths
+                paths: {
+                    "jwt-decode": "js/jwt-decode"
+                },
+                // https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#packages
+                packages: {
+                    app: { defaultExtension: 'js' },
+                    buchverwaltung: { defaultExtension: 'js' },
+                    iam: { defaultExtension: 'js' },
+                    shared: { defaultExtension: 'js' },
+
+                    'jwt-decode': {
+                        main: 'index.js',
+                        defaultExtension: 'js'
+                    }
+                }
+            });
+        </script>
+
+        <!-- RxJS (Reactive Extensions for JavaScript) stellt Observables bereit -->
+        <script src="js/Rx.js"></script>
+        <script src="js/angular2.dev.js"></script>
+        <script src="js/router.js"></script>
+        <script src="js/http.js"></script>
+        <!--
+        <script src="js/Rx.min.js"></script>
+        <script src="js/angular2.min.js"></script>
+        <script src="js/router.min.js"></script>
+        <script src="js/http.min.js"></script>
+        -->
+
+        <script src="js/moment-with-locales.min.js"></script>
+        <script src="js/Chart.min.js"></script>
+        <script src="js/lodash.js"></script>
+
+        <!-- Bootstrap-Plugins (Tabs, Dropdown, Carousel, Modal, ...) erfordern jQuery -->
+        <!-- Bootstrap-Plugin Tooltip erfordert zusaetzlich tether -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/tether.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- In Produktion: von einem CDN (= Common Delivery Network) laden, z.B. http://cdnjs.com/libraries
+        <script src="https://jspm.io/system@VERSION.js"></script>
+        <script src="https://code.angularjs.org/VERSION/angular2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/VERSION/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/VERSION/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/VERSION/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/VERSION/js/tether.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/VERSION/js/bootstrap.min.js"></script>
+        -->
+
+        <script>
+            'use strict';
+            // TODO SystemJS 1.0: System.import() wird zu System.loader.import()
+            //      https://groups.google.com/forum/#!topic/jspm-io/4LXkPZKWo0M
+            //      https://github.com/ModuleLoader/es6-module-loader/issues/381
+            //      https://github.com/whatwg/loader/issues/72
+
+            System.import('bootstrap.js').catch(console.error.bind(console));
+            // URIs fuer bind():
+            //   http://codetunnel.io/javascript-partial-application-with-bind
+            //   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+
+            // Cache-Busting
+            // https://github.com/ModuleLoader/es6-module-loader/wiki/Extending-the-ES6-Loader#custom-extension-example---cache-busting-extension
+            let systemLocate = System.locate;
+            System.locate = function(load) {
+                const System = this;
+                return Promise.resolve(systemLocate.call(this, load))
+                              .then((address) => address + System.cacheBust);
+            };
+            System.cacheBust = '?bust=' + Date.now();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,196 @@
+<div class="card">
+    <div class="card-header bg-primary">
+        <h4>Neues Buch</h4>
+    </div>
+
+    <div class="card-block">
+        <!-- Template-Syntax:
+                [ngFormModel]="form"  fuer Input = Property Binding
+                                      d.h. ngFormModel fuer Attr. form
+                (submit)="save()"  fuer Output = Event Binding
+                                   d.h. Ereignis submit an save() anbinden
+                                   oder on-submit="save"
+                Definition von Attributnamen gemaess HTML: Attribute names
+                must consist of one or more characters other than the
+                space characters, U+0000 NULL, """, "'", ">", "/", "=",
+                the control characters, and any characters that are not
+                defined by Unicode.
+                https://github.com/angular/angular/issues/6786
+        -->
+        <form [ngFormModel]="form" role="form">
+            <div class="form-group row"
+                [class.text-danger]="!titel.valid && titel.touched">
+                <label for="titelInput" class="col-sm-2 form-control-label">
+                    Titel *
+                </label>
+                <div class="col-sm-10">
+                    <input id="titelInput"
+                        placeholder="Titel"
+                        class="form-control"
+                        autofocus
+                        required
+                        pattern="\w.*"
+                        minlength="2"
+                        type="search"
+                        [ngFormControl]="titel">
+                </div>
+                <div class="col-sm-offset-2 col-sm-10"
+                    *ngIf="!titel.valid && titel.touched">
+                    Ein Buchtitel muss mit einem Buchstaben oder einer Ziffer
+                    beginnen und mindestens 2 Zeichen lang sein.
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label">Bewertung</label>
+                <div class="col-sm-10">
+                    <select class="form-control" [ngFormControl]="rating">
+                        <option value="">Bewertung ausw&auml;hlen</option>
+                        <optgroup label="Hoch">
+                            <option value="5">5</option>
+                        </optgroup>
+                        <optgroup label="Mittel">
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                        </optgroup>
+                        <optgroup label="Niedrig">
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </optgroup>
+                </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label">Art *</label>
+                <div class="col-sm-10">
+                    <!--
+                        TODO kein radio_value_accessor.ts in
+                            node_modules\angular2\ts\src\forms
+                            https://github.com/angular/angular/tree/master/modules/angular2/src/core/forms/directives
+                    -->
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" [ngFormControl]="druckausgabe" name="art"
+                                   value="DRUCKAUSGABE"> Druckausgabe
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" [ngFormControl]="kindle" name="art"
+                                   value="KINDLE"> Kindle
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row"
+                [class.text-danger]="!verlag.valid && verlag.touched">
+                <label class="col-sm-2 form-control-label">Verlag *</label>
+                <div class="col-sm-10">
+                    <select class="form-control" [ngFormControl]="verlag" required>
+                        <option value="">Einen Verlag ausw&auml;hlen</option>
+                        <option value="OREILLY">O'Reilly</option>
+                        <option value="PACKT">Packt</option>
+                </select>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10"
+                    *ngIf="!verlag.valid && verlag.touched">
+                    Ein Verlag ist erforderlich.
+                </div>
+            </div>
+
+            <!-- Fuer DatePicker, Rating usw. gibt es noch keine brauchbaren
+                 AngularJS-Direktiven auf Basis von Bootstrap -->
+
+            <div class="form-group row"
+                [class.text-danger]="!preis.valid && preis.touched">
+                <label for="preisInput" class="col-sm-2 form-control-label">
+                    Preis *
+                </label>
+                <div class="col-sm-10">
+                    <input id="preisInput"
+                        placeholder="Preis, z.B. 123.45"
+                        required
+                        class="form-control"
+                        type="search"
+                        [ngFormControl]="preis"/>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10"
+                    *ngIf="!preis.valid && preis.touched">
+                    Ein Preis muss eingegeben werden, z.B. 123.45
+                </div>
+            </div>
+
+            <div class="form-group row"
+                [class.text-danger]="!rabatt.valid && rabatt.touched">
+                <label for="rabattInput" class="col-sm-2 form-control-label">
+                    Rabatt *
+                </label>
+                <div class="col-sm-10">
+                    <input id="rabattInput"
+                        placeholder="Rabatt in Prozent, z.B. 5.67"
+                        required
+                        class="form-control"
+                        type="search"
+                        [ngFormControl]="rabatt"/>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10"
+                    *ngIf="!rabatt.valid && rabatt.touched">
+                    Ein Rabatt muss in Prozent eingegeben werden, z.B. 5.67
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="lieferbarInput" class="col-sm-2 form-control-label">
+                    Lieferbar?
+                </label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input id="lieferbarInput" type="checkbox"
+                                [ngFormControl]="lieferbar"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="schlagwoerterInput" class="col-sm-2 form-control-label">
+                    Schlagw&ouml;rter
+                </label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" [ngFormControl]="schnulze"/>
+                            Schnulze
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"[ngFormControl]="scienceFiction"/>
+                            Science Fiction
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <!-- Template-Syntax:
+                            (click)="save()"  fuer Output = Event Binding
+                                              d.h. Ereignis click an save() anbinden
+                                              oder on-click="save"
+                            [disabled]="..." fuer Input = Property Binding
+                    -->
+                    <button class="btn btn-secondary" (click)="save()"
+                            [disabled]="!form.valid">
+                        <i class="fa fa-check"></i> &nbsp; Jetzt anlegen
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <small>* sind Pflichtfelder</small>
+    </div>
+</div>

@@ -1,0 +1,157 @@
+= Hinweise zum Programmierbeispiel
+
+Jürgen Zimmermann <Juergen.Zimmermann@HS-Karlsruhe.de>
+
+////
+Diese Anleitung ist in AsciiDoctor geschrieben. Um die Datei zu lesen,
+gibt es z.B. für Chrome die Erweiterung "Asciidoctor.js Live Preview":
+https://chrome.google.com/webstore/detail/asciidoctorjs-live-previe/iaalpfgpbocpdfblpnhhgllgbdbchmia?hl=de
+Nach der Installation muss man in Chrome die URL chrome://extensions/ eingeben und dann
+bei "Asciidoctor.js Live Preview" den Haken bei "Zugriff auf Datei-URLs zulassen" setzen.
+////
+
+== Vorbereitung der Installation
+
+* Bei https://github.com registrieren, falls man dort noch nicht registriert ist.
+
+* _Proxy_ für die Installation an der _Hochschule_ in einer Eingabeaufforderung konfigurieren: +
+  `USERNAME` ist der Platzhalter für die Benutzerkennung für die Poolrechner,
+  `PASSWORD` für das zugehörige Passwort
+....
+    npm c set proxy http://USERNAME:PASSWORD@proxy.hs-karlsruhe.de:8888
+    npm c set https-proxy http://USERNAME:PASSWORD@proxy.hs-karlsruhe.de:8888
+    git config --global http.proxy http://USERNAME:PASSWORD@proxy.hs-karlsruhe.de:8888
+    git config --global https.proxy http://USERNAME:PASSWORD@proxy.hs-karlsruhe.de:8888
+    git config --global url."http://".insteadOf git://
+....
+
+== Installation
+
+* Installation der Fremdsoftware in einer Eingabeaufforderung, falls es das
+  Unterverzeichnis `node_modules` nicht gibt:
+....
+    npm i
+....
+
+* Distribution in einer Eingabeaufforderung erstellen: +
+  Codequalität mit _tslint_ und _clang-format_ prüfen, +
+  TypeScript durch _tsc_ in das Verzeichnis `dist` übersetzen, +
+  CSS-Dateien durch _Sass_ und _clean-css_ im Verzeichnis `dist` erstellen, +
+  usw.
+....
+    gulp
+....
+
+* Überprüfen, ob es im Verzeichnis `dist\js` die folgenden Dateien gibt:
+  - `moment-with-locales.min.js`. +
+    Ggf. muss diese Datei manuell aus `node_modules\moment\min` nach `dist\js` kopiert werden.
+  - `lodash.js`. +
+    Ggf. muss diese Datei manuell aus `node_modules\lodash\lodash` nach `dist\js` kopiert werden.
+
+
+== Künftige Routineaufgaben
+
+==== Webserver _browser-sync_ und den Webbrowser _Chrome_ starten
+....
+    gulp webserver
+....
+
+Jetzt kann das Beispiel in _Chrome_ mit der Basis-URI `https://localhost` aufgerufen werden.
+Für Chrome ist außerdem die Erweiterung _Recx Security Analyzer_ empfehlenswert.
+
+==== Neue/geänderte TypeScript-Dateien in das Verzeichnis `dist` übersetzen
+....
+    gulp ts
+....
+
+==== Neue/geänderte Sass-Dateien in CSS in das Verzeichnis `dist` übersetzen
+....
+    gulp sass
+....
+
+==== Neue/geänderte HTML-Dateien in das Verzeichnis `dist` kopieren
+....
+    gulp html
+....
+
+== Typische Imports für AngularJS:
+....
+    import {
+        Component,
+        View,
+        Directive,
+        Input,
+        Output,
+        Inject,
+        Injectable,
+        provide,
+        Provider
+    } from 'angular2/core';
+    import {bootstrap} from 'angular2/platform/browser';
+    import {
+        CORE_DIRECTIVES,
+        FORM_DIRECTIVES,
+        NgClass,
+        NgIf,
+        NgForm,
+        Control,
+        ControlGroup,
+        FormBuilder,
+        Validators
+    } from 'angular2/common';
+    import {
+        RouteConfig,
+        ROUTER_DIRECTIVES,
+        ROUTER_PROVIDERS,
+        Router,
+        LocationStrategy,
+        HashLocationStrategy
+    } from 'angular2/router';
+    import {
+        Http,
+        HTTP_PROVIDERS,
+        RequestOptions,
+        Headers,
+        Request,
+        RequestMethod
+    } from 'angular2/http'
+....
+
+== Sonstige Hinweise
+
+==== Dokumentation zu Chrome DevTools
+https://developer.chrome.com/devtools
+
+==== Firefox Developer Edition als Alternative zu Chrome
+https://www.mozilla.org/en-US/firefox/developer
+
+==== json-server starten
+....
+    gulp jsonserver
+....
+
+Ein RESTful Web Service wird durch JSON-Daten aus einer .json-Datei emuliert.
+Das Produkt `json-server` kann kein https und ist zugreifbar über http://localhost:8443/buecher.
+
+Bei der Task `jsonserver` für `gulp` wird bewusst auf den Bindestrich verzichtet,
+damit die Schreibweise analog zu `gulp webserver` ist.
+
+==== Projekt-Dokumentation generieren
+....
+    gulp doc
+....
+
+==== Proxy-Einstellung künftig ein-/ausschalten:
+....
+    gulp proxy
+    gulp noproxy
+....
+
+==== Umformatieren einer einzelnen Datei mit clang-format, z.B.:
+....
+  .\node_modules\clang-format\bin\win32\clang-format -i -style="file" src\...\myfile.ts
+....
+
+==== Internationalisierung
+Das Package _i18n_ innerhalb von Angular 2 ist noch nicht fertig. Bei Bedarf kann
+_ng2-translate_ https://github.com/ocombe/ng2-translate benutzt werden.
