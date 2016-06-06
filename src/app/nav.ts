@@ -40,7 +40,12 @@ import {isAdmin} from '../iam/iam';
                 </div>
                 <div class="list-group-item">
                     <a [routerLink]="['SucheBuecher']">
-                        <i class="fa fa-search"></i> &nbsp; Suche
+                        <i class="fa fa-search"></i> &nbsp; Suche Buecher
+                    </a>
+                </div>
+                <div class="list-group-item">
+                    <a [routerLink]="['SucheArtikel']">
+                        <i class="fa fa-search"></i> &nbsp; Suche Artikel
                     </a>
                 </div>
                 <div class="list-group-item" *ngIf="isAdmin()">
@@ -72,7 +77,10 @@ import {isAdmin} from '../iam/iam';
                     <i class="fa fa-home"></i> &nbsp; Startseite</a>
                 </li>
                 <li class="nav-item"><a [routerLink]="['SucheBuecher']">
-                    <i class="fa fa-search"></i> &nbsp; Suche</a>
+                    <i class="fa fa-search"></i> &nbsp; Suche Buecher</a>
+                </li>
+                 <li class="nav-item"><a [routerLink]="['SucheArtikel']">
+                    <i class="fa fa-search"></i> &nbsp; Suche Artikel</a>
                 </li>
                 <li class="nav-item" *ngIf="isAdmin()">
                     <a [routerLink]="['CreateBuch']">
