@@ -112,12 +112,12 @@ export default class Artikel {
      * @return Das initialisierte Buch-Objekt
      */
     static fromServer(artikelServer: IArtikelServer): Artikel {
-        const artikelS: Artikel = new Artikel(
+        const artikel: Artikel = new Artikel(
             artikelServer._id, artikelServer.bezeichnung, artikelServer.rating,
             artikelServer.kategorie, artikelServer.preis,
             artikelServer.ausgesondert);
-        console.log('Artikel.fromServer(): artikelS=', artikelS);
-        return artikelS;
+        console.log('Artikel.fromServer(): artikel=', artikel);
+        return artikel;
     }
 
     /**
