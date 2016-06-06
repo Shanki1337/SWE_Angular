@@ -25,27 +25,44 @@ import {IArtikelForm} from '../model/artikel';
 abstract class AbstractArtikelService {
     /**
      * {method} find
+<<<<<<< HEAD
      * Buecher suchen
+=======
+     * Artikel suchen
+>>>>>>> refs/remotes/origin/suche_artikel
      * @param {Object} suchkriterien Die Suchkriterien
      */
     abstract find(suchkriterien: IArtikelForm): void;
 
     /**
      * {method} findById
+<<<<<<< HEAD
      * Ein Buch anhand der ID suchen
      * @param {string} id Die ID des gesuchten Buchs
+=======
+     * Ein Artikel anhand der ID suchen
+     * @param {string} id Die ID des gesuchten Artikels
+>>>>>>> refs/remotes/origin/suche_artikel
      * @param {Function} errorFn Eine Function fuer status !== OK
      */
     abstract findById(id: string): void;
 
+<<<<<<< HEAD
     abstract observeArtikel(
         observerFn: (artikel: Array<Artikel>) => void, thisArg: any): void;
     abstract observeArtikel(
         observerFn: (artikel: Artikel) => void, thisArg: any): void;
+=======
+    abstract observeArtikels(
+        observerFn: (artikel: Array<Artikel>) => void, thisArg: any): void;
+    abstract observeArtikel(
+        observerFn: (artikelS: Artikel) => void, thisArg: any): void;
+>>>>>>> refs/remotes/origin/suche_artikel
     abstract observeError(
         observerFn: (err: string|number) => void, thisArg: any): void;
 
     /**
+<<<<<<< HEAD
      * Ein neues Buch anlegen
      * @param neuesBuch Das JSON-Objekt mit dem neuen Buch
      * @param successFn Die Callback-Function fuer den Erfolgsfall
@@ -97,4 +114,58 @@ abstract class AbstractArtikelService {
     abstract setPieChart(chartElement: HTMLCanvasElement): void;
 }
 
+=======
+     * Ein neues Artikel anlegen
+     * @param neuesArtikel Das JSON-Objekt mit dem neuen Artikel
+     * @param successFn Die Callback-Function fuer den Erfolgsfall
+     * @param errorFn Die Callback-Function fuer den Fehlerfall
+     */
+    /* abstract save(
+         neuerArtikel: Artikel, successFn: (location: string) => void,
+         errorFn: (status: number, text: string) => void): void;
+
+     /**
+      * Ein vorhandenes Artikel aktualisieren
+      * @param artikelS Das JSON-Objekt mit den aktualisierten Artikeldaten
+      * @param successFn Die Callback-Function fuer den Erfolgsfall
+      * @param errorFn Die Callback-Function fuer den Fehlerfall
+      */
+    /* abstract update(
+         artikelS: Artikel, successFn: () => void,
+         errorFn: (status: number, text: string) => void): void;
+
+     /**
+      * Ein Artikel l&ouml;schen
+      * @param artikelS Das JSON-Objekt mit dem zu loeschenden Artikel
+      * @param successFn Die Callback-Function fuer den Erfolgsfall
+      * @param errorFn Die Callback-Function fuer den Fehlerfall
+      */
+    /* abstract remove(
+         artikelS: Artikel, successFn: () => void,
+         errorFn: (status: number) => void): void;
+
+     /**
+      * Ein Balkendiagramm erzeugen und bei einem Tag <code>canvas</code>
+      * einf&uuml;gen.
+      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
+      */
+    /* abstract setBarChart(chartElement: HTMLCanvasElement): void;
+
+     /**
+      * Ein Liniendiagramm erzeugen und bei einem Tag <code>canvas</code>
+      * einf&uuml;gen.
+      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
+      */
+    /*  abstract setLinearChart(chartElement: HTMLCanvasElement): void;
+
+      /**
+       * Ein Tortendiagramm erzeugen und bei einem Tag <code>canvas</code>
+       * einf&uuml;gen.
+       * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
+       */
+    /*  abstract setPieChart(chartElement: HTMLCanvasElement): void;
+  }
+  */
+}
+>>>>>>> refs/remotes/origin/suche_artikel
 export default AbstractArtikelService;
