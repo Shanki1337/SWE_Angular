@@ -48,7 +48,11 @@ abstract class AbstractArtikelService {
     abstract findById(id: string): void;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     abstract observeArtikel(
+=======
+    abstract observeArtikelz(
+>>>>>>> origin/master
         observerFn: (artikel: Array<Artikel>) => void, thisArg: any): void;
     abstract observeArtikel(
         observerFn: (artikel: Artikel) => void, thisArg: any): void;

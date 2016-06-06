@@ -21,16 +21,28 @@ import {Http, Response, Headers, RequestOptionsArgs, URLSearchParams} from 'angu
 
 // Moment exportiert den Namespace moment und die gleichnamige Function:
 // http://stackoverflow.com/questions/35254524/using-moment-js-in-angular-2-typescript-application#answer-35255412
+<<<<<<< HEAD
 /* import {Moment} from 'moment';
 import * as moment_ from 'moment';
 const moment: (date: Date) => Moment = (<any>moment_)['default'];
 */
+=======
+import {Moment} from 'moment';
+import * as moment_ from 'moment';
+const moment: (date: Date) => Moment = (<any>moment_)['default'];
+
+>>>>>>> origin/master
 import {IChart, ChartDataSet, LinearChartData, CircularChartData} from 'chart.js/Chart';
 
 import Artikel from '../model/artikel';
 import {IArtikelServer, IArtikelForm} from '../model/artikel';
+<<<<<<< HEAD
 import AbstractArtikelService from './abstract_artikel_service';
 import {ChartService, BASE_URI, PATH_ARTIKEL, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
+=======
+// import AbstractArtikelService from './abstract_artikel_service';
+import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG , isBlank, isPresent, isEmpty, log} from '../../shared/shared';
+>>>>>>> origin/master
 import {getAuthorization} from '../../iam/iam';
 /* tslint:enable:max-line-length */
 
@@ -48,6 +60,7 @@ import {getAuthorization} from '../../iam/iam';
 // Die Anwendungslogik wird vom Controller an Service-Klassen delegiert.
 
 /**
+<<<<<<< HEAD
  * Die Service-Klasse zu Artikel.
  */
 export default class ArtikelService extends AbstractArtikelService {
@@ -55,6 +68,16 @@ export default class ArtikelService extends AbstractArtikelService {
     private _artikelEmitter: EventEmitter<Array<Artikel>> =
         new EventEmitter<Array<Artikel>>();
     private _artikelSEmitter: EventEmitter<Artikel> =
+=======
+ * Die Service-Klasse zu B&uuml;cher.
+ */
+export default class ArtikelService {
+    private _baseUriArtikel: string;
+    private _baseUriKatalog: string;
+    private _artikelzEmitter: EventEmitter<Array<Artikel>> =
+        new EventEmitter<Array<Artikel>>();
+    private _artikelEmitter: EventEmitter<Artikel> =
+>>>>>>> origin/master
         new EventEmitter<Artikel>();
     private _errorEmitter: EventEmitter<string|number> =
         new EventEmitter<string|number>();
@@ -68,6 +91,7 @@ export default class ArtikelService extends AbstractArtikelService {
     constructor(
         @Inject(ChartService) private _chartService: ChartService,
         @Inject(Http) private _http: Http) {
+<<<<<<< HEAD
         super();
         this._baseUriArtikel = `${BASE_URI}${PATH_ARTIKEL}`;
         console.log(
@@ -94,6 +118,36 @@ export default class ArtikelService extends AbstractArtikelService {
     observeArtikel(observerFn: (artikelS: Artikel) => void, thisArg: any):
         void {
         this._artikelSEmitter.forEach(observerFn, thisArg);
+=======
+        this._baseUriArtikel = `${BASE_URI}${PATH_ARTIKEL}`;
+        this._baseUriKatalog = `${BASE_URI}${PATH_KATALOG}`;
+        console.log(
+            `ArtikelService.constructor(): 
+                baseUriArtikel${this._baseUriArtikel}
+                baseUriKatalog${this._baseUriKatalog}`);
+    }
+
+    /**
+     * Ein Buch-Objekt puffern.
+     * @param buch Das Buch-Objekt, das gepuffert wird.
+     * @return void
+     */
+    set artikel(artikel: Artikel) {
+        console.log('ArtikelService.set artikel()', artikel);
+        this._artikel = artikel;
+    }
+
+    @log
+    observeArtikelz(
+        observerFn: (artikelz: Array<Artikel>) => void, thisArg: any):
+        void {
+        this._artikelzEmitter.forEach(observerFn, thisArg);
+    }
+
+    @log
+    observeArtikel(observerFn: (artikel: Artikel) => void, thisArg: any): void {
+        this._artikelEmitter.forEach(observerFn, thisArg);
+>>>>>>> origin/master
     }
 
     @log
@@ -101,6 +155,7 @@ export default class ArtikelService extends AbstractArtikelService {
         this._errorEmitter.forEach(observerFn, thisArg);
     }
 
+<<<<<<< HEAD
 
     @log
     find(suchkriterien: IArtikelForm): void {
@@ -156,6 +211,27 @@ export default class ArtikelService extends AbstractArtikelService {
         const errorFn: (err: Response) => void = (err: Response) => {
             const status: number = err.status;
             console.log(`ArtikelService.find(): errorFn(): ${status}`);
+=======
+    /**
+     * Buecher suchen
+     * @param suchkriterien Die Suchkriterien
+     */
+    @log
+    find(suchkriterien: IArtikelForm): void {
+        const searchParams: URLSearchParams =
+            this._suchkriterienToSearchParams(suchkriterien);
+        const uri: string = this._baseUriBuecher;
+        console.log(`BuecherService.find(): uri=${uri}`);
+
+        const nextFn: ((response: Response) => void) = (response: Response) => {
+            console.log('BuecherService.find(): nextFn()');
+            let buecher: Array<Buch> = this._responseToArrayBuch(response);
+            this._buecherEmitter.emit(buecher);
+        };
+        const errorFn: (err: Response) => void = (err: Response) => {
+            const status: number = err.status;
+            console.log(`BuecherService.find(): errorFn(): ${status}`);
+>>>>>>> origin/master
             if (status === 400) {
                 const body: string = err.text();
                 if (isBlank(body)) {
@@ -175,6 +251,7 @@ export default class ArtikelService extends AbstractArtikelService {
     }
 
     /**
+<<<<<<< HEAD
      * Ein Artikel anhand der ID suchen
      * @param id Die ID des gesuchten Artikels
      */
@@ -183,16 +260,33 @@ export default class ArtikelService extends AbstractArtikelService {
         // Gibt es ein gepuffertes Artikel mit der gesuchten ID?
         if (isPresent(this._artikel) && this._artikel._id === id) {
             this._artikelSEmitter.emit(this._artikel);
+=======
+     * Ein Buch anhand der ID suchen
+     * @param id Die ID des gesuchten Buchs
+     */
+    @log
+    findById(id: string): void {
+        // Gibt es ein gepuffertes Buch mit der gesuchten ID?
+        if (isPresent(this._artikel) && this._artikel._id === id) {
+            this._artikelEmitter.emit(this._artikel);
+>>>>>>> origin/master
             return;
         }
         if (isBlank(id)) {
             return;
         }
 
+<<<<<<< HEAD
         const uri: string = `${this._baseUriArtikel}/${id}`;
         const nextFn: ((response: Response) => void) = (response: Response) => {
             this._artikel = this._responseToArtikel(response);
             this._artikelSEmitter.emit(this._artikel);
+=======
+        const uri: string = `${this._baseUriKatalog}/${id}`;
+        const nextFn: ((response: Response) => void) = (response: Response) => {
+            this._artikel = this._responseToArtikel(response);
+            this._artikelEmitter.emit(this._artikel);
+>>>>>>> origin/master
         };
         const errorFn: (err: Response) => void = (err: Response) => {
             const status: number = err.status;
@@ -203,18 +297,47 @@ export default class ArtikelService extends AbstractArtikelService {
         this._http.get(uri).subscribe(nextFn, errorFn);
     }
 
+<<<<<<< HEAD
     /**
      * Ein neues Artikel anlegen
      * @param neuesArtikel Das JSON-Objekt mit dem neuen Artikel
+=======
+    @log
+    remove(
+        artikel: Artikel, successFn: () => void,
+        errorFn: (status: number) => void) {
+            return;
+        }
+
+    @log
+    update(
+        artikel: Artikel, successFn: () => void,
+        errorFn: (status: number, text: string) => void) {
+            return;
+        }
+
+    /**
+     * Ein neues Buch anlegen
+     * @param neuesBuch Das JSON-Objekt mit dem neuen Buch
+>>>>>>> origin/master
      * @param successFn Die Callback-Function fuer den Erfolgsfall
      * @param errorFn Die Callback-Function fuer den Fehlerfall
      */
     @log
     save(
+<<<<<<< HEAD
         neuerArtikel: Artikel, successFn: (location: string) => void,
         errorFn: (status: number, text: string) => void): void {
         const uri: string = this._baseUriArtikel;
         const body: string = JSON.stringify(neuerArtikel.toJSON());
+=======
+        neuesBuch: Buch, successFn: (location: string) => void,
+        errorFn: (status: number, text: string) => void): void {
+        neuesBuch.datum = moment(new Date());
+
+        const uri: string = this._baseUriBuecher;
+        const body: string = JSON.stringify(neuesBuch.toJSON());
+>>>>>>> origin/master
         console.log('body=', body);
 
         const headers: Headers =
@@ -242,6 +365,7 @@ export default class ArtikelService extends AbstractArtikelService {
         this._http.post(uri, body, options).subscribe(nextFn, errorFnPost);
     }
 
+<<<<<<< HEAD
     /**
      * Ein vorhandenes Artikel aktualisieren
      * @param artikelS Das JSON-Objekt mit den aktualisierten Artikeldaten
@@ -310,6 +434,8 @@ export default class ArtikelService extends AbstractArtikelService {
         this._http.delete(uri, options).subscribe(nextFn, errorFnDelete);
     }
 
+=======
+>>>>>>> origin/master
     // http://www.sitepoint.com/15-best-javascript-charting-libraries
     // http://thenextweb.com/dd/2015/06/12/20-best-javascript-chart-libraries
     // http://mikemcdearmon.com/portfolio/techposts/charting-libraries-using-d3
@@ -403,11 +529,20 @@ export default class ArtikelService extends AbstractArtikelService {
     }
 
     toString(): String {
+<<<<<<< HEAD
         return `ArtikelService: {artikelS: ${JSON.stringify(this._artikel, null, 2)}}`;
     }
 
     /**
      * Ein Response-Objekt in ein Array von Artikel-Objekten konvertieren.
+=======
+        return `ArtikelService:
+            {artikel: ${JSON.stringify(this._artikel, null, 2)}}`;
+    }
+
+    /**
+     * Ein Response-Objekt in ein Array von Buch-Objekten konvertieren.
+>>>>>>> origin/master
      * @param response Response-Objekt eines GET-Requests.
      */
     @log
@@ -415,17 +550,26 @@ export default class ArtikelService extends AbstractArtikelService {
         URLSearchParams {
         const searchParams: URLSearchParams = new URLSearchParams();
 
+<<<<<<< HEAD
         if (!isEmpty(suchkriterien.bezeichnung)) {
             searchParams.set('bezeichnung', suchkriterien.bezeichnung);
         }
         if (isPresent(suchkriterien.rating)) {
             searchParams.set('rating', suchkriterien.rating.toString());
+=======
+        if (!isEmpty(suchkriterien._id)) {
+            searchParams.set('id', suchkriterien._id);
+>>>>>>> origin/master
         }
         return searchParams;
     }
 
     /**
+<<<<<<< HEAD
      * Ein Response-Objekt in ein Array von Artikel-Objekten konvertieren.
+=======
+     * Ein Response-Objekt in ein Array von Buch-Objekten konvertieren.
+>>>>>>> origin/master
      * @param response Response-Objekt eines GET-Requests.
      */
     @log
@@ -438,7 +582,11 @@ export default class ArtikelService extends AbstractArtikelService {
     }
 
     /**
+<<<<<<< HEAD
      * Ein Response-Objekt in ein Artikel-Objekt konvertieren.
+=======
+     * Ein Response-Objekt in ein Buch-Objekt konvertieren.
+>>>>>>> origin/master
      * @param response Response-Objekt eines GET-Requests.
      */
     @log
@@ -451,6 +599,7 @@ export default class ArtikelService extends AbstractArtikelService {
      * Ein Balkendiagramm erzeugen und bei einem Tag <code>canvas</code>
      * einf&uuml;gen.
      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
+<<<<<<< HEAD
      * @param artikel Die zu ber&uecksichtigenden B&uuml;cher
      */
     @log
@@ -458,11 +607,23 @@ export default class ArtikelService extends AbstractArtikelService {
         chartElement: HTMLCanvasElement, artikel: Array<Artikel>): void {
         const labels: Array<string> =
             artikel.map((artikelS: Artikel) => artikelS._id);
+=======
+     * @param buecher Die zu ber&uecksichtigenden B&uuml;cher
+     */
+    @log
+    private _createBarChart(
+        chartElement: HTMLCanvasElement, artikelz: Array<Artikel>): void {
+        const labels: Array<string> = artikelz.map((artikel: Artikel) => artikel._id);
+>>>>>>> origin/master
         const datasets: Array<ChartDataSet> = [{
             label: 'Bewertungen',
             fillColor: 'rgba(220,220,220,0.2)',
             strokeColor: 'rgba(220,220,220,1)',
+<<<<<<< HEAD
             data: artikel.map((artikelS: Artikel) => artikelS.rating)
+=======
+            data: artikelz.map((artikel: Artikel) => artikel.rating)
+>>>>>>> origin/master
         }];
         const data: LinearChartData = {labels: labels, datasets: datasets};
         console.log('ArtikelService._createBarChart(): labels: ', labels);
@@ -478,6 +639,7 @@ export default class ArtikelService extends AbstractArtikelService {
      * Ein Liniendiagramm erzeugen und bei einem Tag <code>canvas</code>
      * einf&uuml;gen.
      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
+<<<<<<< HEAD
      * @param artikel Die zu ber&uecksichtigenden B&uuml;cher
      */
     @log
@@ -485,11 +647,23 @@ export default class ArtikelService extends AbstractArtikelService {
         chartElement: HTMLCanvasElement, artikel: Array<Artikel>): void {
         const labels: Array<string> =
             artikel.map((artikelS: Artikel) => artikelS._id);
+=======
+     * @param buecher Die zu ber&uecksichtigenden B&uuml;cher
+     */
+    @log
+    private _createLineChart(
+        chartElement: HTMLCanvasElement, artikelz: Array<Artikel>): void {
+        const labels: Array<string> = artikelz.map((artikel: Artikel) => artikel._id);
+>>>>>>> origin/master
         const datasets: Array<ChartDataSet> = [{
             label: 'Bewertungen',
             fillColor: 'rgba(220,220,220,0.2)',
             strokeColor: 'rgba(220,220,220,1)',
+<<<<<<< HEAD
             data: artikel.map((artikelS: Artikel) => artikelS.rating)
+=======
+            data: artikelz.map((artikel: Artikel) => artikel.rating)
+>>>>>>> origin/master
         }];
         const data: LinearChartData = {labels: labels, datasets: datasets};
 
@@ -509,6 +683,7 @@ export default class ArtikelService extends AbstractArtikelService {
      * Ein Tortendiagramm erzeugen und bei einem Tag <code>canvas</code>
      * einf&uuml;gen.
      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
+<<<<<<< HEAD
      * @param artikel Die zu ber&uecksichtigenden B&uuml;cher
      */
     @log
@@ -522,6 +697,21 @@ export default class ArtikelService extends AbstractArtikelService {
                 color: this._chartService.getColorPie(i),
                 highlight: this._chartService.getHighlightPie(i),
                 label: `${artikelS._id}`
+=======
+     * @param buecher Die zu ber&uecksichtigenden B&uuml;cher
+     */
+    @log
+    private _createPieChart(
+        chartElement: HTMLCanvasElement, artikelz: Array<Artikel>): void {
+        const pieData: Array<CircularChartData> =
+            new Array<CircularChartData>(artikelz.length);
+        artikelz.forEach((artikel: Artikel, i: number) => {
+            const data: CircularChartData = {
+                value: artikel.rating,
+                color: this._chartService.getColorPie(i),
+                highlight: this._chartService.getHighlightPie(i),
+                label: `${artikel._id}`
+>>>>>>> origin/master
             };
             pieData[i] = data;
         });

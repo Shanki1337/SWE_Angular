@@ -18,13 +18,9 @@
 export const HTTPS: string = 'https';
 export const HTTP: string = 'http';
 
-// const SCHEME: string = HTTPS;
-// Mocking:
-const SCHEME: string = HTTP;
+const SCHEME: string = HTTPS;
 
-// const PORT: number = 8443;
-// Mocking:
-const PORT: number = 8080;
+const PORT: number = 8443;
 
 const SERVERNAME: string = 'localhost';
 const BASE_PATH: string = '/';
