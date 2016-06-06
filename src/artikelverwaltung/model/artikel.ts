@@ -38,11 +38,12 @@ const MAX_RATING: number = 5;
  */
 export interface IArtikelShared {
     _id?: string;
-    bezeichnung?: string;
+    bezeichnung: string;
     kategorie:
         /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIEHLE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER';
-    ausgesondert: boolean;
+        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'
+        |'WOHNZIMMER';
+    ausgesondert?: boolean;
     /* tslint:enable:max-line-length */
 }
 
@@ -57,7 +58,7 @@ export interface IArtikelShared {
  */
 export interface IArtikelServer extends IArtikelShared {
     preis: number;
-    rating: number;
+    rating?: number;
 }
 
 
@@ -71,7 +72,7 @@ export interface IArtikelServer extends IArtikelShared {
  */
 export interface IArtikelForm extends IArtikelShared {
     preis: string;
-    rating: string;
+    rating?: string;
 }
 
 /**
@@ -87,7 +88,8 @@ export default class Artikel {
         public _id: string, public bezeichnung: string, public rating: number,
         public kategorie:
             /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIEHLE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER',
+        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|
+        'SCHLAFZIMMER'|'WOHNZIMMER',
         public preis: number, public ausgesondert: boolean) {
         this._id = _id || null;
         this.bezeichnung = bezeichnung || null;
@@ -114,7 +116,7 @@ export default class Artikel {
             artikelServer._id, artikelServer.bezeichnung, artikelServer.rating,
             artikelServer.kategorie, artikelServer.preis,
             artikelServer.ausgesondert);
-        console.log('Buch.fromServer(): artikelS=', artikelS);
+        console.log('Artikel.fromServer(): artikelS=', artikelS);
         return artikelS;
     }
 
@@ -129,7 +131,7 @@ export default class Artikel {
             artikelForm._id, artikelForm.bezeichnung,
             parseInt(artikelForm.rating, 10), artikelForm.kategorie,
             parseInt(artikelForm.preis, 10), artikelForm.ausgesondert);
-        console.log('Artikel.fromForm(): artikelS=', artikel);
+        console.log('Artikel.fromForm(): artikel=', artikel);
         return artikel;
     }
 
@@ -184,7 +186,8 @@ export default class Artikel {
     updateStammdaten(
         titel: string, rating: number, kategorie:
                                            /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIEHLE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER',
+        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'
+        |'WOHNZIMMER',
         /* tslint:enable:max-line-length */
         preis: number): void {
         this.bezeichnung = titel;
