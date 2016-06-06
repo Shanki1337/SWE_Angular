@@ -561,6 +561,9 @@ export default class ArtikelService {
             searchParams.set('id', suchkriterien._id);
 >>>>>>> origin/master
         }
+        if (!isEmpty(suchkriterien.bezeichnung)) {
+            searchParams.set('bezeichnung', suchkriterien.bezeichnung);
+        }
         return searchParams;
     }
 
