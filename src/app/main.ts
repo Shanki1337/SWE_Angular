@@ -19,18 +19,7 @@
 import {Component} from 'angular2/core';
 import {ChartService} from '../shared/shared';
 import ArtikelService from '../artikelverwaltung/service/artikel_service';
-import BuecherService from '../buchverwaltung/service/buecher_service';
-import BuecherServiceMockServer from '../buchverwaltung/service/mock/buecher_service_mock_server';
-import BuecherServiceMockObjects from '../buchverwaltung/service/mock/buecher_service_mock_objects';
-import ArtikelServiceMockServer from '../artikelverwaltung/service/mock/artikeln_service_mock_server';
-import ArtikelServiceMockObjects from '../artikelverwaltung/service/mock/artikeln_service_mock_objects';
 
-// import {BUECHER_SERVICE_PROVIDER}
-// from '../buchverwaltung/service/buecher_service';
-// import {MOCK_SERVER_PROVIDER}
-// from '../buchverwaltung/service/mock/buecher_service_mock_server';
-import {MOCK_OBJECTS_PROVIDER} from '../buchverwaltung/service/mock/buecher_service_mock_objects';
-import {MOCK_OBJECTS_PROVIDER2} from '../artikelverwaltung/service/mock/artikeln_service_mock_objects';
 /* tslint:enable:max-line-length */
 
 /**
@@ -41,12 +30,7 @@ import {MOCK_OBJECTS_PROVIDER2} from '../artikelverwaltung/service/mock/artikeln
     // Provider fuer die Main-Komponente und ihre Kindkomponenten,
     // d.h. Singletons innerhalb dieses Teilbaums
     providers: [
-        ChartService, BuecherService, ArtikelService, BuecherServiceMockServer,
-        BuecherServiceMockObjects, ArtikelServiceMockServer,
-        ArtikelServiceMockObjects, MOCK_OBJECTS_PROVIDER2,
-        // BUECHER_SERVICE_PROVIDER
-        // MOCK_SERVER_PROVIDER
-        MOCK_OBJECTS_PROVIDER
+        ChartService, ArtikelService
     ],
     template: `
         <main class="col-xs-12 col-sm-8 col-md-9 col-lg-9 col-xl-9">

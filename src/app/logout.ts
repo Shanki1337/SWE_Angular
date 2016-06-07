@@ -28,7 +28,6 @@ import {log} from '../shared/shared';
     selector: 'logout',
     template: `
         <div *ngIf="isLoggedIn()">
-            <i class="fa fa-2x fa-sign-out"></i> &nbsp;
             <button class="btn btn-default" type="button" (click)="logout()">
                 Logout
             </button>

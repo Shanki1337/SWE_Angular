@@ -25,7 +25,9 @@ import {Component} from 'angular2/core';
     template: `
         <footer class="col-xs-12">
             <span>
-                <strong><i class="fa fa-copyright"></i> J&uuml;rgen Zimmermann</strong>
+                <strong><i class="fa fa-copyright"></i> Shanki Berger, 
+                    Fabian Birke, Sven Baumann, Jannick Weicher
+                    feat. J&uuml;rgen Zimmermann</strong>
             </span>
         </footer>
     `

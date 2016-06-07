@@ -23,7 +23,8 @@ import {Component} from 'angular2/core';
 @Component({
     selector: 'home',
     template: `
-        <h2>Hallo!</h2>
+        <h2>Herzlich Willkommen zum Projekt von Shanki Berger, Sven Baummann, 
+        Fabian Birke und Jannick Weichert!</h2>
     `
 })
 export default class Home {
