@@ -170,20 +170,6 @@ export default class ArtikelService {
         this._http.get(uri).subscribe(nextFn, errorFn);
     }
 
-    @log
-    remove(
-        artikel: Artikel, successFn: () => void,
-        errorFn: (status: number) => void) {
-            return;
-        }
-
-    @log
-    update(
-        artikel: Artikel, successFn: () => void,
-        errorFn: (status: number, text: string) => void) {
-            return;
-        }
-
     /**
      * Ein neues Buch anlegen
      * @param neuesBuch Das JSON-Objekt mit dem neuen Buch
