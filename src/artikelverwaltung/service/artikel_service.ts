@@ -112,17 +112,18 @@ export default class ArtikelService {
     find(suchkriterien: IArtikelForm): void {
         const searchParams: URLSearchParams =
             this._suchkriterienToSearchParams(suchkriterien);
-        const uri: string = this._baseUriBuecher;
-        console.log(`BuecherService.find(): uri=${uri}`);
+        const uri: string = this._baseUriArtikel;
+        console.log(`ArtikelService.find(): uri=${uri}`);
 
         const nextFn: ((response: Response) => void) = (response: Response) => {
-            console.log('BuecherService.find(): nextFn()');
-            let buecher: Array<Buch> = this._responseToArrayBuch(response);
-            this._buecherEmitter.emit(buecher);
+            console.log(`ArtikelService.find(): nextFn()`);
+            let artikel: Array<Artikel> =
+                this._responseToArrayArtikel(response);
+            this._artikelzEmitter.emit(artikel);
         };
         const errorFn: (err: Response) => void = (err: Response) => {
             const status: number = err.status;
-            console.log(`BuecherService.find(): errorFn(): ${status}`);
+            console.log(`ArtikelService.find(): errorFn(): ${status}`);
             if (status === 400) {
                 const body: string = err.text();
                 if (isBlank(body)) {
