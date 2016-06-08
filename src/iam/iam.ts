@@ -37,7 +37,7 @@ export function login(username: string, password: string): void {
     'use strict';
     console.log(`iam.login(): username=${username}, password=${password}`);
 
-    if (!BASE_URI.startsWith(HTTPS)) {
+    if (BASE_URI.startsWith(HTTPS)) {
         // Mocking: String fuer Basic-Authentifizierung
         const authorizationValue: string =
             `Basic ${toBase64(username, password)}`;
@@ -151,7 +151,7 @@ export function getAuthorization(): string {
  */
 function expired(): boolean {
     'use strict';
-    if (!BASE_URI.startsWith(HTTPS)) {
+    if (BASE_URI.startsWith(HTTPS)) {
         return false;
     }
 

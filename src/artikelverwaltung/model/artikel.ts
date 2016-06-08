@@ -147,7 +147,7 @@ export default class Artikel {
             bezeichnung.toLowerCase());
     }
 
-    contrainsId(id: string): boolean {
+    containsId(id: string): boolean {
         return this._id.toLowerCase().includes(id.toLowerCase());
     }
 

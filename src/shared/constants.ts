@@ -23,7 +23,7 @@ const SCHEME: string = HTTPS;
 const PORT: number = 8443;
 
 const SERVERNAME: string = 'localhost';
-const BASE_PATH: string = '/';
+const BASE_PATH: string = '/shop/rest/';
 
 /**
  * Basis-URI, wenn der eigentliche Server verwendet wird.

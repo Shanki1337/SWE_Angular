@@ -112,7 +112,7 @@ export default class ArtikelService {
     find(suchkriterien: IArtikelForm): void {
         const searchParams: URLSearchParams =
             this._suchkriterienToSearchParams(suchkriterien);
-        const uri: string = this._baseUriArtikel;
+        const uri: string = this._baseUriKatalog;
         console.log(`ArtikelService.find(): uri=${uri}`);
 
         const nextFn: ((response: Response) => void) = (response: Response) => {
@@ -177,6 +177,7 @@ export default class ArtikelService {
      * @param successFn Die Callback-Function fuer den Erfolgsfall
      * @param errorFn Die Callback-Function fuer den Fehlerfall
      */
+    /*
     @log
     save(
         neuesBuch: Buch, successFn: (location: string) => void,
@@ -212,6 +213,7 @@ export default class ArtikelService {
         this._http.post(uri, body, options).subscribe(nextFn, errorFnPost);
 
     }
+    */
 
     // http://www.sitepoint.com/15-best-javascript-charting-libraries
     // http://thenextweb.com/dd/2015/06/12/20-best-javascript-chart-libraries
