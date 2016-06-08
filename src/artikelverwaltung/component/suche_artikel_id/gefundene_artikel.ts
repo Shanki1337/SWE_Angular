@@ -104,7 +104,7 @@ import {log} from '../../../shared/shared';
 
         <!-- Ausgabe des JSON-Datensatzes im Webbrowser statt console.log(...) -->
         <!--
-        <pre *ngIf="buecher != null">{{buecher | json}}</pre>
+        <pre *ngIf="artikel != null">{{artikel | json}}</pre>
         -->
     `
 })
