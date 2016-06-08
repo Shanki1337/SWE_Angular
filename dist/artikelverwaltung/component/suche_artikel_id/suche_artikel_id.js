@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-System.register(['angular2/core', './such_kriterien', './such_ergebnis', '../../../shared/shared'], function(exports_1, context_1) {
+System.register(['angular2/core', './such_kriterien_id', './such_ergebnis', '../../../shared/shared'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -26,15 +26,15 @@ System.register(['angular2/core', './such_kriterien', './such_ergebnis', '../../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, such_kriterien_1, such_ergebnis_1, shared_1;
+    var core_1, such_kriterien_id_1, such_ergebnis_1, shared_1;
     var SucheArtikel;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (such_kriterien_1_1) {
-                such_kriterien_1 = such_kriterien_1_1;
+            function (such_kriterien_id_1_1) {
+                such_kriterien_id_1 = such_kriterien_id_1_1;
             },
             function (such_ergebnis_1_1) {
                 such_ergebnis_1 = such_ergebnis_1_1;
@@ -81,7 +81,7 @@ System.register(['angular2/core', './such_kriterien', './such_ergebnis', '../../
             SucheArtikel = __decorate([
                 core_1.Component({
                     selector: 'suche-artikel-id',
-                    directives: [such_kriterien_1.default, such_ergebnis_1.default],
+                    directives: [such_kriterien_id_1.default, such_ergebnis_1.default],
                     template: `
         <such-kriterien (waiting)="setWaiting($event)"></such-kriterien>
         <such-ergebnis [waiting]="waiting"></such-ergebnis>

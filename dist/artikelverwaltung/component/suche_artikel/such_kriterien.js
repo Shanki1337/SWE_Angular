@@ -131,8 +131,8 @@ System.register(['angular2/core', 'angular2/common', '../../service/artikel_serv
                         <div class="col-sm-10">
                             <input id="bezeichnungInput"
                                 type="search"
-                                placeholder="Den Bezeichnung oder einen Teil davon 
-                                eingeben"
+                                placeholder=
+                                "Den Bezeichnung oder einen Teil davon eingeben"
                                 class="form-control"
                                 [(ngModel)]="bezeichnung">
                         </div>
@@ -144,7 +144,7 @@ System.register(['angular2/core', 'angular2/common', '../../service/artikel_serv
                             <select class="form-control"
                                     [(ngModel)]="kategorie">
                                 <option value=""></option>
-                                <option value="BAD">O'BAD</option>
+                                <option value="BAD">BAD</option>
                                 <option value="BUERO">BUERO</option>
                                 <option value="DIEHLE">DIEHLE</option>
                                 <option value="ESSZIMMER">ESSZIMMER</option>

@@ -39,68 +39,25 @@ import {isAdmin} from '../iam/iam';
                     </a>
                 </div>
                 <div class="list-group-item">
-                    <a [routerLink]="['SucheBuecher']">
-                        <i class="fa fa-search"></i> &nbsp; Suche Buecher
-                    </a>
-                </div>
-                <div class="list-group-item">
                     <a [routerLink]="['SucheArtikel']">
                         <i class="fa fa-search"></i> &nbsp; Suche Artikel
                     </a>
                 </div>
-                <div class="list-group-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['CreateBuch']">
-                        <i class="fa fa-book"></i> &nbsp; Neues Buch
-                    </a>
-                </div>
-                <div class="list-group-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['Balkendiagramm']">
-                        <i class="fa fa-bar-chart"></i> &nbsp; Balkendiagramm
-                    </a>
-                </div>
-                <div class="list-group-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['Liniendiagramm']">
-                        <i class="fa fa-line-chart"></i> &nbsp; Liniendiagramm
-                    </a>
-                </div>
-                <div class="list-group-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['Tortendiagramm']">
-                        <i class="fa fa-pie-chart"></i> &nbsp; Tortendiagramm
+                <div class="list-group-item">
+                    <a [routerLink]="['SucheArtikelId']">
+                        <i class="fa fa-search"></i> &nbsp; Suche Artikel nach ID
                     </a>
                 </div>
             </div>
 
-                <!-- DSL-Pfade durch @RouteConfig([{path: '/...', name: 'Home' ...} -->
+            <!-- DSL-Pfade durch @RouteConfig([{path: '/...', name: 'Home' ...} -->
             <!--
             <ul class="nav nav-pills nav-stacked">
                 <li class="nav-item"><a [routerLink]="['Home']">
                     <i class="fa fa-home"></i> &nbsp; Startseite</a>
                 </li>
-                <li class="nav-item"><a [routerLink]="['SucheBuecher']">
-                    <i class="fa fa-search"></i> &nbsp; Suche Buecher</a>
-                </li>
-                 <li class="nav-item"><a [routerLink]="['SucheArtikel']">
+                <li class="nav-item"><a [routerLink]="['SucheArtikel']">
                     <i class="fa fa-search"></i> &nbsp; Suche Artikel</a>
-                </li>
-                <li class="nav-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['CreateBuch']">
-                        <i class="fa fa-book"></i> &nbsp; Neues Buch
-                    </a>
-                </li>
-                <li class="nav-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['Balkendiagramm']">
-                        <i class="fa fa-bar-chart"></i> &nbsp; Balkendiagramm
-                    </a>
-                </li>
-                <li class="nav-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['Liniendiagramm']">
-                        <i class="fa fa-line-chart"></i> &nbsp; Liniendiagramm
-                    </a>
-                </li>
-                <li class="nav-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['Tortendiagramm']">
-                        <i class="fa fa-pie-chart"></i> &nbsp; Tortendiagramm
-                    </a>
                 </li>
             </ul>
             -->

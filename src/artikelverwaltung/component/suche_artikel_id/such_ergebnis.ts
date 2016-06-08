@@ -52,7 +52,7 @@ export default class SuchErgebnis implements OnInit {
     // node_modules\angular2\ts\src\core\metadata\directives.ts
     @Input() waiting: boolean;
 
-    artikelz: Array<Artikel> = null;
+    artikel: Artikel = null;
     errorMsg: string = null;
 
     constructor(
@@ -68,7 +68,7 @@ export default class SuchErgebnis implements OnInit {
     // Die Ableitung vom Interface OnInit ist nicht notwendig, aber erleichtet
     // IntelliSense bei der Verwendung von TypeScript.
     ngOnInit(): void {
-        this._observeArtikelz();
+        this._observeArtikel();
         this._observeError();
     }
 
@@ -80,15 +80,15 @@ export default class SuchErgebnis implements OnInit {
      * <code>ngOnInit</code> aufgerufen.
      */
     /* tslint:disable:align */
-    private _observeArtikelz(): void {
+    private _observeArtikel(): void {
         // Funktion als Funktionsargument, d.h. Code als Daten uebergeben
-        this._artikelService.observeArtikelz((artikelz: Array<Artikel>) => {
+        this._artikelService.observeArtikel((artikel: Artikel) => {
             // zuruecksetzen
             this.waiting = false;
             this.errorMsg = null;
 
-            this.artikelz = artikelz;
-            console.log('SuchErgebnis.artikelz:', this.artikelz);
+            this.artikel = artikel;
+            console.log('SuchErgebnis.artikel:', this.artikel);
         }, this);
     }
 
@@ -102,7 +102,7 @@ export default class SuchErgebnis implements OnInit {
         this._artikelService.observeError((err: string | number) => {
             // zuruecksetzen
             this.waiting = false;
-            this.artikelz = null;
+            this.artikel = null;
 
             if (err === null) {
                 this.errorMsg = 'Ein Fehler ist aufgetreten.';

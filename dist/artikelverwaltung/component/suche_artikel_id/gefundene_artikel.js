@@ -74,8 +74,8 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
             };
             __decorate([
                 core_1.Input(), 
-                __metadata('design:type', Array)
-            ], GefundeneArtikel.prototype, "artikelz", void 0);
+                __metadata('design:type', artikel_1.default)
+            ], GefundeneArtikel.prototype, "artikel", void 0);
             __decorate([
                 shared_1.log, 
                 __metadata('design:type', Function), 
@@ -87,9 +87,9 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                     selector: 'gefundene-artikel',
                     directives: [common_1.CORE_DIRECTIVES],
                     template: `
-        <!-- Template Binding durch die Direktive ngIf -->
+    <!-- Template Binding durch die Direktive ngIf -->
         <!-- Eine Direktive ist eine Komponente ohne View -->
-        <div class="card" *ngIf="artikelz != null">
+        <div class="card" *ngIf="artikel != null">
             <div class="card-header">
                 <h4><i class="fa fa-folder-open-o"></i> Gefundene Artikel</h4>
             </div>
@@ -100,59 +100,54 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                         <th>ID</th>
                         <th>Bezeichnung</th>
                         <th>Kategorie</th>
-                        <th>Ausgesondert</th>
-                        <th>Preis</th>
-                        <th>Rating</th>
                         <th>
                             <span class="sr-only">
                                 Spalte f&uuml;r Details
+                            </span>
+                        </th> 
+                        <th>
+                            <span class="sr-only">
+                                Spalte f&uuml;r Entfernen
                             </span>
                         </th>
                     </thead>
                     <tbody>
                         <!-- Template Binding: ngFor -->
                         <!-- Event-Binding: statt (click) auch on-click -->
-                        <tr *ngFor="#a of artikelz; #i = index" (click)="details(b)">
-                            <td>{{i + 1}}</td>
-                            <td>{{a._id}}</td>
-                            <td>{{a.bezeichnung}}</td>
+                        <tr>
+                            <td>{{1}}</td>
+                            <td>{{artikel._id}}</td>
+                            <td>{{artikel.bezeichnung}}</td>
                             <td>
-                                <span [ngSwitch]="a.kategorie">
-                                    <span *ngSwitchWhen="'BAD'">Bad</span>
-                                    <span *ngSwitchWhen="'BUERO'">Büro</span>
-                                    <span *ngSwitchWhen="'DIELE'">Diele</span>
-                                    <span *ngSwitchWhen="'ESSZIMMER'">Esszimmer</span>
-                                    <span *ngSwitchWhen="'KUECHE'">Küche</span>
-                                    <span *ngSwitchWhen="'SCHLAFZIMMER'">
-                                        Schlafzimmer</span>
-                                    <span *ngSwitchWhen="'WOHNZIMMER'">
-                                        Wohnzimmer</span>                                 
-                                    <span *ngSwitchDefault>unbekannt</span>
+                                <span [ngSwitch]="artikel.kategorie">
+                                  <span *ngSwitchWhen="'BAD'">BAD</span>
+                                  <span *ngSwitchWhen="'BUERO'">BUERO</span>
+                                  <span *ngSwitchWhen="'DIEHLE'">DIEHLE</span>
+                                  <span *ngSwitchWhen="'ESSZIMMER'">ESSZIMMER</span>
+                                  <span *ngSwitchWhen="'KINDERZIMMER'">KINDERZIMMER</span>
+                                  <span *ngSwitchWhen="'KUECHE'">KUECHE</span>
+                                  <span *ngSwitchWhen="'SCHLAFZIMMER'">SCHLAFZIMMER</span>
+                                  <span *ngSwitchWhen="'WOHNZIMMER'">WOHNZIMMER</span>
+                                  <span *ngSwitchDefault>unbekannt</span>
                                 </span>
                             </td>
-                            <td>
-                                <span [ngSwitch]="a.ausgesondert">
-                                    <span *ngSwitchWhen=true>x</span>
-                                    <span *ngSwitchWhen=false>-</span>
-                            </td>
-                            <td>{{a.preis}}</td>
-                            <td>{{a.rating}}</td>
                             <td>
                                 <!-- Pfad /detailsBuch/:id, @RouteConfig in app.ts -->
                                 <!-- modaler Dialog als Alternative: -->
                                 <!-- http://v4-alpha.getbootstrap.com/components/modal -->
-                                <a [routerLink]="['DetailsArtikel', {'id': a._id}]"
+                                <a [routerLink]="['DetailsArtikel', {'id': artikel._id}]"
                                    data-toggle="tooltip" title="Details anzeigen">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
-                            </td>
+                            </td>                            
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="card-footer">
                 <i class="fa fa-info-circle"></i>
-                Diese Datensätze stammen vom Server javaee
+                Zur Anzeige der JSON-Datens&auml;tze in gefundene_artikel.ts
+                den Kommentar beim Tag &lt;pre&gt; entfernen
             </div>
         </div>
 

@@ -17,7 +17,7 @@
 
 import {Component, OnDestroy} from 'angular2/core'; // externes Modul
 
-import SuchKriterien from './such_kriterien'; // internes Modul
+import SuchKriterien from './such_kriterien_id'; // internes Modul
 import SuchErgebnis from './such_ergebnis';
 import {log} from '../../../shared/shared';
 

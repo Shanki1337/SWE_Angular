@@ -44,6 +44,7 @@ const APP_ROUTES: any = {
         {path: '/sucheArtikel', name: 'SucheArtikel', component: SucheArtikel},
     sucheArtikelIdDef:
         {path: '/sucheArtikelId', name: 'SucheArtikelId', component: SucheArtikelId},
+
     redirect: {path: '/', redirectTo: ['Home']}
 };
 export default APP_ROUTES;

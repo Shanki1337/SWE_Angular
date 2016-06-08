@@ -137,18 +137,11 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                  * @param id Die ID des gesuchten Buchs
                  */
                 findById(id) {
-                    // Gibt es ein gepuffertes Buch mit der gesuchten ID?
-                    if (shared_1.isPresent(this._artikel) && this._artikel._id === id) {
-                        this._artikelEmitter.emit(this._artikel);
-                        return;
-                    }
-                    if (shared_1.isBlank(id)) {
-                        return;
-                    }
                     const uri = `${this._baseUriKatalog}/${id}`;
                     const nextFn = (response) => {
                         this._artikel = this._responseToArtikel(response);
                         this._artikelEmitter.emit(this._artikel);
+                        console.log(`ArtikelService.findById(): ${this._artikel}`);
                     };
                     const errorFn = (err) => {
                         const status = err.status;
@@ -285,7 +278,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                 _suchkriterienToSearchParams(suchkriterien) {
                     const searchParams = new http_1.URLSearchParams();
                     if (!shared_1.isEmpty(suchkriterien._id)) {
-                        searchParams.set('isd', suchkriterien._id);
+                        searchParams.set('id', suchkriterien._id);
                     }
                     if (!shared_1.isEmpty(suchkriterien.bezeichnung)) {
                         searchParams.set('bezeichnung', suchkriterien.bezeichnung);

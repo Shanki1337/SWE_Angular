@@ -44,7 +44,7 @@ import {log} from '../../../shared/shared';
                 -->
                 <!-- Template-Syntax:
                      (submit)="find()"   fuer Output = Event Binding
-                                         d.h. Ereignis submit an find() anbinden
+                                         d.h. Ereignis submsit an find() anbinden
                                          oder on-submit="find"
                      Definition von Attributnamen gemaess HTML: Attribute names
                      must consist of one or more characters other than the
@@ -63,7 +63,7 @@ import {log} from '../../../shared/shared';
                         <div class="col-sm-10">
                             <input id="idInput"
                                 type="search"
-                                placeholder="Die ID oder einen Teil davon eingeben"
+                                placeholder="Die ID hier eingeben"
                                 class="form-control"
                                 [(ngModel)]="id">
                         </div>
@@ -72,7 +72,7 @@ import {log} from '../../../shared/shared';
                     <div class="form-group row">
                         <div class="col-sm-offset-2 col-sm-10">
                             <i class="fa fa-info-circle"></i>
-                            Hinweis: Keine Eingabe liefert alle Artikel
+                            Hinweis: Die Eingabe der ID muss exakt sein!
                         </div>
                     </div>
 
@@ -108,11 +108,8 @@ export default class SuchKriterien {
      */
     @log
     find(): boolean {
-        const suchkriterium: string = this.id;
-        console.log('suchkriterien=', suchkriterium);
-
         this.waiting.emit(true);
-        this._artikelService.findById(suchkriterium);
+        this._artikelService.findById(this.id);
 
         // Inspektion der Komponente mit dem Tag-Namen "app" im Debugger
         // Voraussetzung: globale Variable ng deklarieren (s.o.)

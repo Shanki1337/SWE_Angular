@@ -141,19 +141,11 @@ export default class ArtikelService {
      */
     @log
     findById(id: string): void {
-        // Gibt es ein gepuffertes Buch mit der gesuchten ID?
-        if (isPresent(this._artikel) && this._artikel._id === id) {
-            this._artikelEmitter.emit(this._artikel);
-            return;
-        }
-        if (isBlank(id)) {
-            return;
-        }
-
         const uri: string = `${this._baseUriKatalog}/${id}`;
         const nextFn: ((response: Response) => void) = (response: Response) => {
             this._artikel = this._responseToArtikel(response);
             this._artikelEmitter.emit(this._artikel);
+            console.log(`ArtikelService.findById(): ${this._artikel}`);
         };
         const errorFn: (err: Response) => void = (err: Response) => {
             const status: number = err.status;
@@ -315,7 +307,7 @@ export default class ArtikelService {
         const searchParams: URLSearchParams = new URLSearchParams();
 
         if (!isEmpty(suchkriterien._id)) {
-            searchParams.set('isd', suchkriterien._id);
+            searchParams.set('id', suchkriterien._id);
         }
         if (!isEmpty(suchkriterien.bezeichnung)) {
             searchParams.set('bezeichnung', suchkriterien.bezeichnung);

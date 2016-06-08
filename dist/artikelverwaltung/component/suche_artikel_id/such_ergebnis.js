@@ -59,7 +59,7 @@ System.register(['angular2/core', 'angular2/router', './gefundene_artikel', '../
                 constructor(_artikelService, _router) {
                     this._artikelService = _artikelService;
                     this._router = _router;
-                    this.artikelz = null;
+                    this.artikel = null;
                     this.errorMsg = null;
                     console.log('SuchErgebnis.constructor()');
                 }
@@ -71,7 +71,7 @@ System.register(['angular2/core', 'angular2/router', './gefundene_artikel', '../
                 // Die Ableitung vom Interface OnInit ist nicht notwendig, aber erleichtet
                 // IntelliSense bei der Verwendung von TypeScript.
                 ngOnInit() {
-                    this._observeArtikelz();
+                    this._observeArtikel();
                     this._observeError();
                 }
                 /**
@@ -82,14 +82,14 @@ System.register(['angular2/core', 'angular2/router', './gefundene_artikel', '../
                  * <code>ngOnInit</code> aufgerufen.
                  */
                 /* tslint:disable:align */
-                _observeArtikelz() {
+                _observeArtikel() {
                     // Funktion als Funktionsargument, d.h. Code als Daten uebergeben
-                    this._artikelService.observeArtikelz((artikelz) => {
+                    this._artikelService.observeArtikel((artikel) => {
                         // zuruecksetzen
                         this.waiting = false;
                         this.errorMsg = null;
-                        this.artikelz = artikelz;
-                        console.log('SuchErgebnis.artikelz:', this.artikelz);
+                        this.artikel = artikel;
+                        console.log('SuchErgebnis.artikel:', this.artikel);
                     }, this);
                 }
                 /**
@@ -102,7 +102,7 @@ System.register(['angular2/core', 'angular2/router', './gefundene_artikel', '../
                     this._artikelService.observeError((err) => {
                         // zuruecksetzen
                         this.waiting = false;
-                        this.artikelz = null;
+                        this.artikel = null;
                         if (err === null) {
                             this.errorMsg = 'Ein Fehler ist aufgetreten.';
                             return;
