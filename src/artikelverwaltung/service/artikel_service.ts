@@ -17,13 +17,7 @@
 
 /* tslint:disable:max-line-length */
 import {Inject, EventEmitter, provide, Provider} from 'angular2/core';
-import {Http, Response, Headers, RequestOptionsArgs, URLSearchParams} from 'angular2/http';
-
-// Moment exportiert den Namespace moment und die gleichnamige Function:
-// http://stackoverflow.com/questions/35254524/using-moment-js-in-angular-2-typescript-application#answer-35255412
-import {Moment} from 'moment';
-import * as moment_ from 'moment';
-const moment: (date: Date) => Moment = (<any>moment_)['default'];
+import {Http, Response, URLSearchParams} from 'angular2/http';
 
 import {IChart, ChartDataSet, LinearChartData, CircularChartData} from 'chart.js/Chart';
 
@@ -31,7 +25,6 @@ import Artikel from '../model/artikel';
 import {IArtikelServer, IArtikelForm} from '../model/artikel';
 // import AbstractArtikelService from './abstract_artikel_service';
 import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG , isBlank, isPresent, isEmpty, log} from '../../shared/shared';
-import {getAuthorization} from '../../iam/iam';
 /* tslint:enable:max-line-length */
 
 // Methoden der Klasse Http

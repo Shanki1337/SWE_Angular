@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["nav.min.css"],"sourcesContent":[".jz-app-nav {\n  background-color: #BED6F8; }\n\n.router-link-active {\n  font-weight: bold;\n  font-style: italic;\n  font-stretch: expanded; }\n"],"file":"nav.min.css","sourceRoot":"/source/"}

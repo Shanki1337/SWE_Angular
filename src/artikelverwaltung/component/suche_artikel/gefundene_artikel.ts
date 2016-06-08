@@ -77,12 +77,6 @@ import {log} from '../../../shared/shared';
                                   <span *ngSwitchDefault>unbekannt</span>
                                 </span>
                             </td>
-                          
-<td>
-	<a (click)="remove(a)" data-toggle="tooltip" title="Entfernen">
-		<i class="fa fa-remove"></i>
-	</a>
-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -123,20 +117,6 @@ export default class GefundeneArtikel {
         //    console.log(`id=${artikelS._id}`);
         //   this._router.navigate(
         //       [APP_ROUTES.detailsBuchDef.name, {id: artikelS._id}]);
-    }
-
-    /**
-     * Das ausgew&auml;hlte bzw. angeklickte Buch l&ouml;schen.
-     * @param artikelS Das ausgew&auml;hlte Buch
-     */
-    @log
-    remove(artikelS: Artikel): void {
-        const errorFn: (status: number) => void = (status: number): void => {
-            console.error(`Fehler beim Loeschen: status=${status}`);
-        };
-        this._artikelService.remove(artikelS, null, errorFn);
-        this.artikel =
-            this.artikel.filter((a: Artikel) => a._id !== artikelS._id);
     }
 
     toString(): String { return 'GefundeneArtikel'; }

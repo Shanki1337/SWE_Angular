@@ -82,7 +82,7 @@ export default class SuchErgebnis implements OnInit {
     /* tslint:disable:align */
     private _observeArtikel(): void {
         // Funktion als Funktionsargument, d.h. Code als Daten uebergeben
-        this._artikelService.observeArtikels((artikel: Array<Artikel>) => {
+        this._artikelService.observeArtikelz((artikel: Array<Artikel>) => {
             // zuruecksetzen
             this.waiting = false;
             this.errorMsg = null;
