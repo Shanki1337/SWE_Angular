@@ -137,6 +137,14 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                  * @param id Die ID des gesuchten Buchs
                  */
                 findById(id) {
+                    // Gibt es ein gepuffertes Buch mit der gesuchten ID?
+                    if (shared_1.isPresent(this._artikel) && this._artikel._id === id) {
+                        this._artikelEmitter.emit(this._artikel);
+                        return;
+                    }
+                    if (shared_1.isBlank(id)) {
+                        return;
+                    }
                     const uri = `${this._baseUriKatalog}/${id}`;
                     const nextFn = (response) => {
                         this._artikel = this._responseToArtikel(response);

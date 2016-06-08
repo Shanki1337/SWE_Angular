@@ -141,6 +141,14 @@ export default class ArtikelService {
      */
     @log
     findById(id: string): void {
+         // Gibt es ein gepuffertes Buch mit der gesuchten ID?
+        if (isPresent(this._artikel) && this._artikel._id === id) {
+            this._artikelEmitter.emit(this._artikel);
+            return;
+        }
+        if (isBlank(id)) {
+            return;
+        }
         const uri: string = `${this._baseUriKatalog}/${id}`;
         const nextFn: ((response: Response) => void) = (response: Response) => {
             this._artikel = this._responseToArtikel(response);

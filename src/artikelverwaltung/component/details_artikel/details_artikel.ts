@@ -67,7 +67,7 @@ export default class DetailsArtikel implements OnInit {
     constructor(
         private _artikelService: ArtikelService,
         private _routeParams: RouteParams) {
-        console.log('DetailsAtikel.constructor(): routeParams=', _routeParams);
+        console.log('DetailsArtikel.constructor(): routeParams=', _routeParams);
     }
 
     // Methode zum "LifeCycle Hook" OnInit: wird direkt nach dem Konstruktor

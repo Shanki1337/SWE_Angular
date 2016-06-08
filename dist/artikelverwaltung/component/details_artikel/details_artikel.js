@@ -62,7 +62,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                     this.waiting = false;
                     this.artikel = null;
                     this.errorMsg = null;
-                    console.log('DetailsAtikel.constructor(): routeParams=', _routeParams);
+                    console.log('DetailsArtikel.constructor(): routeParams=', _routeParams);
                 }
                 // Methode zum "LifeCycle Hook" OnInit: wird direkt nach dem Konstruktor
                 // aufgerufen: node_modules\angular2\ts\src\core\linker\interfaces.ts
