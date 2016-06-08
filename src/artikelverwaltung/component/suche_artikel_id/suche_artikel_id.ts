@@ -30,7 +30,7 @@ import {log} from '../../../shared/shared';
  * </ul>
  */
 @Component({
-    selector: 'suche-artikel',
+    selector: 'suche-artikel-id',
     directives: [SuchKriterien, SuchErgebnis],
     template: `
         <such-kriterien (waiting)="setWaiting($event)"></such-kriterien>

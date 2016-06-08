@@ -21,12 +21,14 @@ import {RouteDefinition} from 'angular2/router';
 import Home from './home';
 import SucheBuecher from '../buchverwaltung/component/suche_buecher/suche_buecher';
 import DetailsBuch from '../buchverwaltung/component/details_buch/details_buch';
-// import DetailsArtikel from
-// '../artikelverwaltung/component/details_artikel/details_artikel';
+import DetailsArtikel from
+'../artikelverwaltung/component/details_artikel/details_artikel';
 import CreateBuch from '../buchverwaltung/component/create_buch/create_buch';
 import UpdateBuch from '../buchverwaltung/component/update_buch/update_buch';
 
 import SucheArtikel from '../artikelverwaltung/component/suche_artikel/suche_artikel';
+import SucheArtikelId from '../artikelverwaltung/component/suche_artikel_id/suche_artikel_id';
+
 
 import BalkendiagrammBewertungen from '../buchverwaltung/component/balkendiagramm_bewertungen/balkendiagramm_bewertungen';
 import LiniendiagrammBewertungen from '../buchverwaltung/component/liniendiagramm_bewertungen/liniendiagramm_bewertungen';
@@ -47,11 +49,13 @@ const APP_ROUTES: any = {
         {path: '/sucheBuecher', name: 'SucheBuecher', component: SucheBuecher},
     detailsBuchDef:
         {path: '/detailsBuch/:id', name: 'DetailsBuch', component: DetailsBuch},
-    //   detailsArtikelDef:
-    //     {path: '/detailsArtikel/:id', name: 'DetailsArtikel', component:
-    //     DetailsArtikel},
+    detailsArtikelDef:
+         {path: '/detailsArtikel/:id', name: 'DetailsArtikel', component:
+         DetailsArtikel},
     sucheArtikelDef:
         {path: '/sucheArtikel', name: 'SucheArtikel', component: SucheArtikel},
+    sucheArtikelIdDef:
+        {path: '/sucheArtikelId', name: 'SucheArtikelId', component: SucheArtikelId},
     updateBuchDef:
         {path: '/updateBuch/:id', name: 'UpdateBuch', component: UpdateBuch},
     createBuchDef:

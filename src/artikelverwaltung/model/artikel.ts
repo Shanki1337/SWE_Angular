@@ -147,6 +147,10 @@ export default class Artikel {
             bezeichnung.toLowerCase());
     }
 
+    contrainsId(id: string): boolean {
+        return this._id.toLowerCase().includes(id.toLowerCase());
+    }
+
     /**
      * Die Bewertung ("rating") des Buches um 1 erh&ouml;hen
      */

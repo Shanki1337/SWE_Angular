@@ -188,11 +188,11 @@ export default class ArtikelService {
         console.log('body=', body);
 
         const headers: Headers =
-            new Headers({'Content-Type': 'application/json'});
+            new Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', getAuthorization());
         // RequestOptionsArgs in
         // node_modules\angular2\ts\src\http\interfaces.ts
-        const options: RequestOptionsArgs = {headers: headers};
+        const options: RequestOptionsArgs = { headers: headers };
         console.log('options=', options);
 
         const nextFn: ((response: Response) => void) = (response: Response) => {
@@ -210,6 +210,7 @@ export default class ArtikelService {
                 }
             };
         this._http.post(uri, body, options).subscribe(nextFn, errorFnPost);
+
     }
 
     // http://www.sitepoint.com/15-best-javascript-charting-libraries
