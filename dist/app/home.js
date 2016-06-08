@@ -46,8 +46,9 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1.Component({
                     selector: 'home',
                     template: `
-        <h2>Herzlich Willkommen zum Projekt von Shanki Berger, Sven Baummann, 
-        Fabian Birke und Jannick Weichert!</h2>
+        <h2>Herzlich Willkommen</h2>
+        <p>Zum Projekt von Shanki Berger, Sven Baummann, 
+        Fabian Birke und Jannick Weichert!</p>
     `
                 }), 
                 __metadata('design:paramtypes', [])

@@ -49,7 +49,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         <footer class="col-xs-12">
             <span>
                 <strong><i class="fa fa-copyright"></i> Shanki Berger, 
-                    Fabian Birke, Sven Baumann, Jannick Weicher
+                    Fabian Birke, Sven Baumann, Jannick Weichert
                     feat. J&uuml;rgen Zimmermann</strong>
             </span>
         </footer>

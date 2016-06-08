@@ -70,12 +70,12 @@ System.register(['angular2/core', 'angular2/common', '../iam/iam'], function(exp
                         <i class="fa fa-home"></i> &nbsp; Startseite
                     </a>
                 </div>
-                <div class="list-group-item">
+                <div class="list-group-item" *ngIf="isAdmin()">
                     <a [routerLink]="['SucheArtikel']">
                         <i class="fa fa-search"></i> &nbsp; Suche Artikel
                     </a>
                 </div>
-                <div class="list-group-item">
+                <div class="list-group-item" *ngIf="isAdmin()">
                     <a [routerLink]="['SucheArtikelId']">
                         <i class="fa fa-search"></i> &nbsp; Suche Artikel nach ID
                     </a>

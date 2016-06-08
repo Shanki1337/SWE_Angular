@@ -47,7 +47,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     selector: 'logo',
                     template: `
         <a [routerLink]="['Home']">
-            <img src="/img/hs-logo.gif" alt="Logo" height="60" width="337">
+            <img src="/img/webshop.png" alt="Logo" height="60" width="337">
         </a>
     `
                 }), 
