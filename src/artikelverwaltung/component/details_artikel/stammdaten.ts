@@ -84,6 +84,7 @@ export default class Stammdaten implements OnInit {
 
     constructor() { console.log('Stammdaten.constructor()'); }
 
-    ngOnInit(): void { console.log(
-        'Stammdaten.ngOnInit(): artikel=', this.artikel); }
+    ngOnInit(): void {
+        console.log('Stammdaten.ngOnInit(): artikel=', this.artikel);
+    }
 }

@@ -113,12 +113,14 @@ export default class GefundeneArtikel {
     }
 
     /**
-     * Das ausgew&auml;hlte bzw. angeklickte Artikel in der Detailsseite anzeigen.
+     * Das ausgew&auml;hlte bzw. angeklickte Artikel in der Detailsseite 
+     * anzeigen.
      * @param artikelS Das ausgew&auml;hlte Artikel
      */
     @log
     details(artikel: Artikel): void {
-        console.log(`detailsArtikelDef.name=${APP_ROUTES.detailsArtikelDef.name}`);
+        console.log(
+            `detailsArtikelDef.name=${APP_ROUTES.detailsArtikelDef.name}`);
         console.log(`id=${artikel._id}`);
         this._router.navigate(
             [APP_ROUTES.detailsArtikelDef.name, {id: artikel._id}]);
