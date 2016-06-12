@@ -37,11 +37,16 @@ import SucheArtikelId from '../artikelverwaltung/component/suche_artikel_id/such
 const APP_ROUTES: any = {
     homeDef: {path: '/home', name: 'Home', component: Home, useAsDefault: true},
     // home: {path: '/', name: 'Home', component: Home},
-    detailsArtikelDef:
-         {path: '/detailsArtikel/:id', name: 'DetailsArtikel', component:
-         DetailsArtikel},
-    sucheArtikelDef:
-        {path: '/sucheArtikel', name: 'SucheArtikel', component: SucheArtikel},
+    detailsArtikelDef: {
+        path: '/detailsArtikel/:id',
+        name: 'DetailsArtikel',
+        component: DetailsArtikel
+    },
+    sucheArtikelDef: {
+        path: '/sucheArtikel',
+        name: 'SucheArtikel',
+        component: SucheArtikel
+    },
     sucheArtikelIdDef:
         {path: '/sucheArtikelId', name: 'SucheArtikelId', component: SucheArtikelId},
 

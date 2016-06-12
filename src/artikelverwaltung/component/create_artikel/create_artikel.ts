@@ -34,11 +34,8 @@ import {isPresent, log} from '../../../shared/shared';
 
     // Keine Zerlegung in Subkomponenten, weil das Control-Objekt der
     // Subkomponente im Konstruktor fuer die ControlGroup benoetigt wird
-    templateUrl: 
+    templateUrl:
         '/artikelverwaltung/component/create_artikel/create_artikel.html'
-    
-
-
     // FIXME Relative URL https://github.com/angular/angular/issues/2383
     //       erfordert TypeScript 1.8 wg. Moment und CommonJS
     // templateUrl: 'create_artikel.html',
@@ -56,8 +53,7 @@ export default class CreateArtikel implements OnInit {
     rating: Control = new Control('');
     kategorie: Control = new Control({checked: true});
     preis: Control = new Control('');
-    ausgesondert: Control = new Control({checked: true}
-    );
+    ausgesondert: Control = new Control({checked: true});
     constructor(
         private _formBuilder: FormBuilder,
         private _artikelService: ArtikelService, private _router: Router) {

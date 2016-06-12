@@ -29,9 +29,7 @@ import ArtikelService from '../artikelverwaltung/service/artikel_service';
     selector: 'app-main',
     // Provider fuer die Main-Komponente und ihre Kindkomponenten,
     // d.h. Singletons innerhalb dieses Teilbaums
-    providers: [
-        ChartService, ArtikelService
-    ],
+    providers: [ChartService, ArtikelService],
     template: `
         <main class="col-xs-12 col-sm-8 col-md-9 col-lg-9 col-xl-9">
             <!-- Abstand: margin top 1 rem -->
