@@ -30,8 +30,7 @@ import {isString, Waiting, ErrorMessage} from '../../../shared/shared';
  */
 @Component({
     selector: 'details-artikel',
-    directives:
-        [CORE_DIRECTIVES, Stammdaten, Waiting, ErrorMessage],
+    directives: [CORE_DIRECTIVES, Stammdaten, Waiting, ErrorMessage],
     template: `
         <waiting [activated]="waiting"></waiting>
 

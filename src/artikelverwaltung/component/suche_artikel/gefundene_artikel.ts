@@ -113,7 +113,7 @@ export default class GefundeneArtikel {
     }
 
     /**
-     * Das ausgew&auml;hlte bzw. angeklickte Artikel in der Detailsseite 
+     * Das ausgew&auml;hlte bzw. angeklickte Artikel in der Detailsseite
      * anzeigen.
      * @param artikelS Das ausgew&auml;hlte Artikel
      */

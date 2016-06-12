@@ -41,8 +41,7 @@ export interface IArtikelShared {
     bezeichnung: string;
     kategorie:
         /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'
-        |'WOHNZIMMER';
+        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER';
     ausgesondert?: boolean;
     /* tslint:enable:max-line-length */
 }
@@ -88,8 +87,7 @@ export default class Artikel {
         public _id: string, public bezeichnung: string, public rating: number,
         public kategorie:
             /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|
-        'SCHLAFZIMMER'|'WOHNZIMMER',
+        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER',
         public preis: number, public ausgesondert: boolean) {
         this._id = _id || null;
         this.bezeichnung = bezeichnung || null;
@@ -190,8 +188,7 @@ export default class Artikel {
     updateStammdaten(
         titel: string, rating: number, kategorie:
                                            /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'
-        |'WOHNZIMMER',
+        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER',
         /* tslint:enable:max-line-length */
         preis: number): void {
         this.bezeichnung = titel;
