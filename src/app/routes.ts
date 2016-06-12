@@ -43,7 +43,7 @@ const APP_ROUTES: any = {
         component: DetailsArtikel
     },
     sucheArtikelDef:
-    {path: '/sucheArtikel', name: 'SucheArtikel', component: SucheArtikel},
+        {path: '/sucheArtikel', name: 'SucheArtikel', component: SucheArtikel},
     sucheArtikelIdDef: {
         path: '/sucheArtikelId',
         name: 'SucheArtikelId',
