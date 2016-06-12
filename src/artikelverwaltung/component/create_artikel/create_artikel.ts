@@ -1,5 +1,5 @@
 /**
- * Created by Jannick on 12.06.2016.
+ * Created by Jannick Weichert.
  */
 
 /* tslint:disable:max-line-length */
@@ -7,20 +7,20 @@ import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from 'angular2/common';
 import {Router, CanActivate} from 'angular2/router';
 
-import BuecherService from '../../service/buecher_service';
-import Buch from '../../model/buch';
-import BuchValidator from '../validator/buch_validator';
+import ArtikelService from '../../service/artikel_service';
+import Artikel from '../../model/artikel';
+import ArtikelValidator from '../validator/artikel_validator';
 import APP_ROUTES from '../../../app/routes';
 import {isAdmin} from '../../../iam/iam';
 import {isPresent, log} from '../../../shared/shared';
 /* tslint:enable:max-line-length */
 
 /**
- * Komponente mit dem Tag &lt;create-buch&gt;, um das Erfassungsformular
- * f&uuml;r ein neues Buch zu realisieren.
+ * Komponente mit dem Tag &lt;create-artikel&gt;, um das Erfassungsformular
+ * f&uuml;r ein neues Artikel zu realisieren.
  */
 @Component({
-    selector: 'create-buch',
+    selector: 'create-artikel',
 
     // FormBuilder ist nur fuer die Komponente und ihre Kind-Komponenten
     // verfuegbar
@@ -34,11 +34,11 @@ import {isPresent, log} from '../../../shared/shared';
 
     // Keine Zerlegung in Subkomponenten, weil das Control-Objekt der
     // Subkomponente im Konstruktor fuer die ControlGroup benoetigt wird
-    templateUrl: '/buchverwaltung/component/create_buch/create_buch.html'
+    templateUrl: '/artikelverwaltung/component/create_artikel/create_artikel.html'
 
     // FIXME Relative URL https://github.com/angular/angular/issues/2383
     //       erfordert TypeScript 1.8 wg. Moment und CommonJS
-    // templateUrl: 'create_buch.html',
+    // templateUrl: 'create_artikel.html',
     // moduleId: module.id,
 })
 // Die Komponente kann nur aktiviert bzw. benutzt werden, wenn die aufgerufene
@@ -46,10 +46,10 @@ import {isPresent, log} from '../../../shared/shared';
 // https://github.com/angular/angular/issues/2965
 // https://github.com/angular/angular/issues/4112
 @CanActivate(isAdmin)
-export default class CreateBuch implements OnInit {
+export default class CreateArtikel implements OnInit {
     form: ControlGroup;
     // Keine Vorbelegung bzw. der leere String, da es Placeholder gibt
-    titel: Control = new Control('', BuchValidator.titel);
+    titel: Control = new Control('', ArtikelValidator.titel);
     rating: Control = new Control('');
     druckausgabe: Control = new Control({checked: true});
     kindle: Control = new Control({checked: false});
@@ -66,8 +66,8 @@ export default class CreateBuch implements OnInit {
 
     constructor(
         private _formBuilder: FormBuilder,
-        private _buecherService: BuecherService, private _router: Router) {
-        console.log('CreateBuch.constructor()');
+        private _artikelService: ArtikelService, private _router: Router) {
+        console.log('CreateArtikel.constructor()');
         if (!isPresent(_router)) {
             console.error('Injizierter Router:', _router);
         }
@@ -94,7 +94,7 @@ export default class CreateBuch implements OnInit {
 
     /**
      * Die Methode <code>save</code> realisiert den Event-Handler, wenn das
-     * Formular abgeschickt wird, um ein neues Buch anzulegen.
+     * Formular abgeschickt wird, um ein neuen Artikel anzulegen.
      * @return false, um das durch den Button-Klick ausgel&ouml;ste Ereignis
      *         zu konsumieren.
      */
@@ -116,28 +116,28 @@ export default class CreateBuch implements OnInit {
             return false;
         }
 
-        const neuesBuch: Buch = Buch.fromForm(this.form.value);
-        console.log('neuesBuch=', neuesBuch);
+        const neuerArtikel: Artikel = Artikel.fromForm(this.form.value);
+        console.log('neuerArtikel=', neuerArtikel);
 
         const successFn: (
             location: string) => void = (location: string = null) => {
             console.log(
-                `CreateBuch.save(): successFn(): location: ${location}`);
+                `CreateArtikel.save(): successFn(): location: ${location}`);
             // TODO Das Response-Objekt enthaelt im Header NICHT "Location"
             console.log(
                 /* tslint:disable:max-line-length */
-                `CreateBuch.save(): successFn(): navigate: ${APP_ROUTES.homeDef.name}`);
+                `CreateArtikel.save(): successFn(): navigate: ${APP_ROUTES.homeDef.name}`);
             /* tslint:enable:max-line-length */
             this._router.navigate([APP_ROUTES.homeDef.name]);
         };
         const errorFn: (status: number, text: string) => void =
             (status: number, text: string = null): void => {
-                console.log(`CreateBuch.save(): errorFn(): status: ${status}`);
+                console.log(`CreateArtikel.save(): errorFn(): status: ${status}`);
                 if (isPresent(text)) {
-                    console.log(`CreateBuch.save(): errorFn(): text: ${text}`);
+                    console.log(`CreateArtikel.save(): errorFn(): text: ${text}`);
                 }
             };
-        this._buecherService.save(neuesBuch, successFn, errorFn);
+        this._artikelService.save(neuerArtikel, successFn, errorFn);
 
         // damit das (Submit-) Ereignis konsumiert wird und nicht an
         // uebergeordnete Eltern-Komponenten propagiert wird bis zum Refresh
@@ -145,5 +145,5 @@ export default class CreateBuch implements OnInit {
         return false;
     }
 
-    toString(): String { return 'CreateBuch'; }
+    toString(): String { return 'CreateArtikel'; }
 }
