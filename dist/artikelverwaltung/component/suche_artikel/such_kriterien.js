@@ -67,7 +67,6 @@ System.register(['angular2/core', 'angular2/common', '../../service/artikel_serv
                 find() {
                     const suchkriterien = {
                         bezeichnung: this.bezeichnung,
-                        kategorie: this.kategorie,
                     };
                     console.log('suchkriterien=', suchkriterien);
                     this.waiting.emit(true);
@@ -136,27 +135,7 @@ System.register(['angular2/core', 'angular2/common', '../../service/artikel_serv
                                 class="form-control"
                                 [(ngModel)]="bezeichnung">
                         </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-control-label">Kategorie</label>
-                        <div class="col-sm-10">
-                            <select class="form-control"
-                                    [(ngModel)]="kategorie">
-                                <option value=""></option>
-                                <option value="BAD">BAD</option>
-                                <option value="BUERO">BUERO</option>
-                                <option value="DIEHLE">DIEHLE</option>
-                                <option value="ESSZIMMER">ESSZIMMER</option>
-                                <option value="KINDERZIMMER">KINDERZIMMER</option>
-                                <option value="KUECHE">KUECHE</option>
-                                <option value="SCHLAFZIMMER">SCHLAFZIMMER</option>
-                                <option value="WOHNZIMMER">WOHNZIMMER</option>
-                        </select>
-                        </div>
-                    </div>
-
-                    
+                    </div>                    
                     <div class="form-group row">
                         <div class="col-sm-offset-2 col-sm-10">
                             <i class="fa fa-info-circle"></i>

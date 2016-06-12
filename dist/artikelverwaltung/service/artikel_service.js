@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../shared/shared'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../shared/shared', '../../iam/iam'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -29,7 +29,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
     var __param = (this && this.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
-    var core_1, http_1, artikel_1, shared_1;
+    var core_1, http_1, artikel_1, shared_1, iam_1;
     var ArtikelService, ARTIKEL_SERVICE_PROVIDER;
     return {
         setters:[
@@ -44,6 +44,9 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
             },
             function (shared_1_1) {
                 shared_1 = shared_1_1;
+            },
+            function (iam_1_1) {
+                iam_1 = iam_1_1;
             }],
         execute: function() {
             /* tslint:enable:max-line-length */
@@ -82,7 +85,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                 }
                 /**
                  * Ein Buch-Objekt puffern.
-                 * @param buch Das Buch-Objekt, das gepuffert wird.
+                 * @param artikel Das Artikel-Objekt, das gepuffert wird.
                  * @return void
                  */
                 set artikel(artikel) {
@@ -137,7 +140,6 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                  * @param id Die ID des gesuchten Buchs
                  */
                 findById(id) {
-                    // Gibt es ein gepuffertes Buch mit der gesuchten ID?
                     if (shared_1.isPresent(this._artikel) && this._artikel._id === id) {
                         this._artikelEmitter.emit(this._artikel);
                         return;
@@ -159,31 +161,22 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                     this._http.get(uri).subscribe(nextFn, errorFn);
                 }
                 /**
-                 * Ein neues Buch anlegen
-                 * @param neuesBuch Das JSON-Objekt mit dem neuen Buch
+                 * Ein neuen Artikel anlegen
+                 * @param neuerArtikel Das JSON-Objekt mit dem neuen Buch
                  * @param successFn Die Callback-Function fuer den Erfolgsfall
                  * @param errorFn Die Callback-Function fuer den Fehlerfall
                  */
-                /*
-                @log
-                save(
-                    neuesBuch: Buch, successFn: (location: string) => void,
-                    errorFn: (status: number, text: string) => void): void {
-                    neuesBuch.datum = moment(new Date());
-            
-                    const uri: string = this._baseUriBuecher;
-                    const body: string = JSON.stringify(neuesBuch.toJSON());
+                save(neuerArtikel, successFn, errorFn) {
+                    const uri = this._baseUriArtikel;
+                    const body = JSON.stringify(neuerArtikel.toJSON());
                     console.log('body=', body);
-            
-                    const headers: Headers =
-                        new Headers({ 'Content-Type': 'application/json' });
-                    headers.append('Authorization', getAuthorization());
+                    const headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    headers.append('Authorization', iam_1.getAuthorization());
                     // RequestOptionsArgs in
                     // node_modules\angular2\ts\src\http\interfaces.ts
-                    const options: RequestOptionsArgs = { headers: headers };
+                    const options = { headers: headers };
                     console.log('options=', options);
-            
-                    const nextFn: ((response: Response) => void) = (response: Response) => {
+                    const nextFn = (response) => {
                         if (response.status === 201) {
                             // TODO Das Response-Objekt enthaelt im Header NICHT "Location"
                             successFn(null);
@@ -191,16 +184,13 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                         }
                     };
                     // async. Error-Callback statt sync. try/catch
-                    const errorFnPost: ((errResponse: Response) => void) =
-                        (errResponse: Response) => {
-                            if (isPresent(errorFn)) {
-                                errorFn(errResponse.status, errResponse.text());
-                            }
-                        };
+                    const errorFnPost = (errResponse) => {
+                        if (shared_1.isPresent(errorFn)) {
+                            errorFn(errResponse.status, errResponse.text());
+                        }
+                    };
                     this._http.post(uri, body, options).subscribe(nextFn, errorFnPost);
-            
                 }
-                */
                 // http://www.sitepoint.com/15-best-javascript-charting-libraries
                 // http://thenextweb.com/dd/2015/06/12/20-best-javascript-chart-libraries
                 // http://mikemcdearmon.com/portfolio/techposts/charting-libraries-using-d3
@@ -412,6 +402,12 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                 __metadata('design:paramtypes', [String]), 
                 __metadata('design:returntype', void 0)
             ], ArtikelService.prototype, "findById", null);
+            __decorate([
+                shared_1.log, 
+                __metadata('design:type', Function), 
+                __metadata('design:paramtypes', [artikel_1.default, Function, Function]), 
+                __metadata('design:returntype', void 0)
+            ], ArtikelService.prototype, "save", null);
             __decorate([
                 shared_1.log, 
                 __metadata('design:type', Function), 

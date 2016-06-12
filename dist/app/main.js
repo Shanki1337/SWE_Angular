@@ -54,9 +54,7 @@ System.register(['angular2/core', '../shared/shared', '../artikelverwaltung/serv
                     selector: 'app-main',
                     // Provider fuer die Main-Komponente und ihre Kindkomponenten,
                     // d.h. Singletons innerhalb dieses Teilbaums
-                    providers: [
-                        shared_1.ChartService, artikel_service_1.default
-                    ],
+                    providers: [shared_1.ChartService, artikel_service_1.default],
                     template: `
         <main class="col-xs-12 col-sm-8 col-md-9 col-lg-9 col-xl-9">
             <!-- Abstand: margin top 1 rem -->

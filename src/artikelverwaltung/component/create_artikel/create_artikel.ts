@@ -96,7 +96,7 @@ export default class CreateArtikel implements OnInit {
         if (!this.form.valid) {
             /* tslint:disable:max-line-length */
             console.log(
-                `valid=${this.titel.valid}, errorRequired=${this.titel.errors['required']}`);
+                `valid=${this.bezeichnung.valid}, errorRequired=${this.bezeichnung.errors['required']}`);
             /* tslint:enable:max-line-length */
             return false;
         }

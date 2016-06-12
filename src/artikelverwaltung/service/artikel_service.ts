@@ -17,7 +17,7 @@
 
 /* tslint:disable:max-line-length */
 import {Inject, EventEmitter, provide, Provider} from 'angular2/core';
-import {Http, Response, URLSearchParams} from 'angular2/http';
+import {Http, Response, Headers, RequestOptionsArgs, URLSearchParams} from 'angular2/http';
 
 import {IChart, ChartDataSet, LinearChartData, CircularChartData} from 'chart.js/Chart';
 
@@ -25,6 +25,7 @@ import Artikel from '../model/artikel';
 import {IArtikelServer, IArtikelForm} from '../model/artikel';
 // import AbstractArtikelService from './abstract_artikel_service';
 import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
+import {getAuthorization} from '../../iam/iam';
 /* tslint:enable:max-line-length */
 
 // Methoden der Klasse Http
@@ -171,12 +172,9 @@ export default class ArtikelService {
     save(
         neuerArtikel: Artikel, successFn: (location: string) => void,
         errorFn: (status: number, text: string) => void): void {
-        neuerArtikel.datum = moment(new Date());
-
-        const uri: string = this._baseUriBuecher;
-        const body: string = JSON.stringify(neuesBuch.toJSON());
+        const uri: string = this._baseUriArtikel;
+        const body: string = JSON.stringify(neuerArtikel.toJSON());
         console.log('body=', body);
-
         const headers: Headers =
             new Headers({'Content-Type': 'application/json'});
         headers.append('Authorization', getAuthorization());

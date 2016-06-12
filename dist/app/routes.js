@@ -45,9 +45,17 @@ System.register(['./home', '../artikelverwaltung/component/details_artikel/detai
             APP_ROUTES = {
                 homeDef: { path: '/home', name: 'Home', component: home_1.default, useAsDefault: true },
                 // home: {path: '/', name: 'Home', component: Home},
-                detailsArtikelDef: { path: '/detailsArtikel/:id', name: 'DetailsArtikel', component: details_artikel_1.default },
+                detailsArtikelDef: {
+                    path: '/detailsArtikel/:id',
+                    name: 'DetailsArtikel',
+                    component: details_artikel_1.default
+                },
                 sucheArtikelDef: { path: '/sucheArtikel', name: 'SucheArtikel', component: suche_artikel_1.default },
-                sucheArtikelIdDef: { path: '/sucheArtikelId', name: 'SucheArtikelId', component: suche_artikel_id_1.default },
+                sucheArtikelIdDef: {
+                    path: '/sucheArtikelId',
+                    name: 'SucheArtikelId',
+                    component: suche_artikel_id_1.default
+                },
                 redirect: { path: '/', redirectTo: ['Home'] }
             };
             exports_1("default",APP_ROUTES);

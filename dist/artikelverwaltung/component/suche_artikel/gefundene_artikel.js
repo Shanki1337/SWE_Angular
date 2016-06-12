@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../service/artikel_service', '../../model/artikel', '../../../shared/shared'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../service/artikel_service', '../../model/artikel', '../../../app/routes', '../../../shared/shared'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -26,7 +26,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, artikel_service_1, artikel_1, shared_1;
+    var core_1, common_1, router_1, artikel_service_1, artikel_1, routes_1, shared_1;
     var GefundeneArtikel;
     return {
         setters:[
@@ -45,6 +45,9 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
             function (artikel_1_1) {
                 artikel_1 = artikel_1_1;
             },
+            function (routes_1_1) {
+                routes_1 = routes_1_1;
+            },
             function (shared_1_1) {
                 shared_1 = shared_1_1;
             }],
@@ -59,15 +62,14 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                     console.log('GefundeneArtikel.constructor()');
                 }
                 /**
-                 * Das ausgew&auml;hlte bzw. angeklickte Buch in der Detailsseite anzeigen.
-                 * @param artikelS Das ausgew&auml;hlte Buch
+                 * Das ausgew&auml;hlte bzw. angeklickte Artikel in der Detailsseite
+                 * anzeigen.
+                 * @param artikelS Das ausgew&auml;hlte Artikel
                  */
-                details(artikelS) {
-                    // TODO
-                    // console.log(`detailsArtikelDef.name=${APP_ROUTES.detailsBuchDef.name}`);
-                    //    console.log(`id=${artikelS._id}`);
-                    //   this._router.navigate(
-                    //       [APP_ROUTES.detailsBuchDef.name, {id: artikelS._id}]);
+                details(artikel) {
+                    console.log(`detailsArtikelDef.name=${routes_1.default.detailsArtikelDef.name}`);
+                    console.log(`id=${artikel._id}`);
+                    this._router.navigate([routes_1.default.detailsArtikelDef.name, { id: artikel._id }]);
                 }
                 toString() { return 'GefundeneArtikel'; }
             };
@@ -129,6 +131,12 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                                   <span *ngSwitchWhen="'WOHNZIMMER'">WOHNZIMMER</span>
                                   <span *ngSwitchDefault>unbekannt</span>
                                 </span>
+                            </td>
+                            <td>
+                                <a [routerLink]="['DetailsArtikel', {'id': a._id}]"
+                                   data-toggle="tooltip" title="Details anzeigen">
+                                    <i class="fa fa-search-plus"></i>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
