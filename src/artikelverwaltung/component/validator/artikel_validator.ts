@@ -27,17 +27,17 @@ import {isBlank} from '../../../shared/shared';
  * Die Validierungsfunktionen sind f&uuml;r Formulare, in denen Daten erfasst
  * oder ge&auml;ndert werden.
  */
-export default class BuchValidator {
+export default class ArtikelValidator {
     // Rueckgabewert null bedeutet valid
 
     /**
-     * Validierung, ob der Titel eines Buches plausibel ist.
+     * Validierung, ob die Bezeichnung eines Artikels plausibel ist.
      * @param control Das Control-Objekt innerhalb eines Formulars
-     * @return null, wenn der Buchtitel valide ist. Ansonsten ein JSON-Objekt
+     * @return null, wenn die Bezeichnung valide ist. Ansonsten ein JSON-Objekt
      *         mit den Verst&ouml;&szlig;en.
      */
-    static titel(control: Control): {[key: string]: boolean} {
-        // Ein Titel muss existieren und das 1. Zeichen muss ein Buchstabe,
+    static bezeichnung(control: Control): {[key: string]: boolean} {
+        // Ein Name muss existieren und das 1. Zeichen muss ein Buchstabe,
         // Ziffer oder _ sein
         const invalid: boolean =
             isBlank(control.value) || control.value.match(/^\w.*/) === null;

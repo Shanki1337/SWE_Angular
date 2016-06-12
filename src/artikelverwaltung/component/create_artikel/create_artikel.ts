@@ -49,21 +49,12 @@ import {isPresent, log} from '../../../shared/shared';
 export default class CreateArtikel implements OnInit {
     form: ControlGroup;
     // Keine Vorbelegung bzw. der leere String, da es Placeholder gibt
-    titel: Control = new Control('', ArtikelValidator.titel);
+    bezeichnung: Control = new Control('', ArtikelValidator.bezeichnung);
     rating: Control = new Control('');
-    druckausgabe: Control = new Control({checked: true});
-    kindle: Control = new Control({checked: false});
-    // Varianten fuer Validierung:
-    //    serverseitig mittels Request/Response
-    //    clientseitig bei den Ereignissen keyup, change, ...
-    // Ein Endbenutzer bewirkt staendig einen neuen Fehlerstatus
-    verlag: Control = new Control('');
+    kategorie: Control = new Control({checked: true});
     preis: Control = new Control('');
-    rabatt: Control = new Control('');
-    lieferbar: Control = new Control(false);
-    schnulze: Control = new Control(false);
-    scienceFiction: Control = new Control(false);
-
+    ausgesondert: Control = new Control({checked: true});
+    
     constructor(
         private _formBuilder: FormBuilder,
         private _artikelService: ArtikelService, private _router: Router) {
@@ -79,16 +70,11 @@ export default class CreateArtikel implements OnInit {
     ngOnInit(): void {
         this.form = this._formBuilder.group({
             // siehe ngFormControl innerhalb von @Component({template: `...`})
-            'titel': this.titel,
+            'bezeichnung': this.bezeichnung,
             'rating': this.rating,
-            'druckausgabe': this.druckausgabe,
-            'kindle': this.kindle,
-            'verlag': this.verlag,
+            'kategorie': this.kategorie,
             'preis': this.preis,
-            'rabatt': this.rabatt,
-            'lieferbar': this.lieferbar,
-            'schnulze': this.schnulze,
-            'scienceFiction': this.scienceFiction
+            'ausgesondert': this.ausgesondert
         });
     }
 
