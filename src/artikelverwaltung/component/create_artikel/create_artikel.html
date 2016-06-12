@@ -21,11 +21,11 @@
             <div class="form-group row"
                  [class.text-danger]="!titel.valid && titel.touched">
                 <label for="titelInput" class="col-sm-2 form-control-label">
-                    Titel *
+                    Artikelbezeichnung *
                 </label>
                 <div class="col-sm-10">
                     <input id="titelInput"
-                           placeholder="Titel"
+                           placeholder="Artikelbezeichnung"
                            class="form-control"
                            autofocus
                            required
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-sm-offset-2 col-sm-10"
                      *ngIf="!titel.valid && titel.touched">
-                    Ein Artikelname muss mit einem Buchstaben oder einer Ziffer
+                    Eine Artikelbezeichnung muss mit einem Buchstaben oder einer Ziffer
                     beginnen und mindestens 2 Zeichen lang sein.
                 </div>
             </div>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 form-control-label">Art *</label>
+                <label class="col-sm-2 form-control-label">Kategorie *</label>
                 <div class="col-sm-10">
                     <!--
                         TODO kein radio_value_accessor.ts in
@@ -71,37 +71,54 @@
                     -->
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" [ngFormControl]="druckausgabe" name="art"
-                                   value="DRUCKAUSGABE"> Druckausgabe
+                            <input type="radio" [ngFormControl]="BAD" name="art"
+                                   value="BAD"> Bad
                         </label>
                     </div>
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" [ngFormControl]="kindle" name="art"
-                                   value="KINDLE"> Kindle
+                            <input type="radio" [ngFormControl]="BUERO" name="art"
+                                   value="BUERO"> B&uuml;ro
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" [ngFormControl]="DIELE" name="art"
+                                   value="DIELE"> Diele
+                        </label>
+                    </div>
+                    <div class="radio">
+                    <label class="radio-inline">
+                        <input type="radio" [ngFormControl]="ESSZIMMER" name="art"
+                               value="ESSZIMMER"> Esszimmer
+                    </label>
+                </div>
+                </div>
+                <div class="radio">
+                    <label class="radio-inline">
+                        <input type="radio" [ngFormControl]="KINDERZIMMER" name="art"
+                               value="KINDERZIMMER"> Kinderzimmer
+                    </label>
+                </div>
+                    <div class="radio">
+                    <label class="radio-inline">
+                        <input type="radio" [ngFormControl]="KUECHE" name="art"
+                               value="KUECHE"> K&uuml;che
+                    </label>
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" [ngFormControl]="SCHLAFZIMMER" name="art"
+                                   value="SCHLAFZIMMER"> Schlafzimmer
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" [ngFormControl]="WOHNZIMMER" name="art"
+                                   value="WOHNZIMMER"> Wohnzimmer
                         </label>
                     </div>
                 </div>
             </div>
-
-            <div class="form-group row"
-                 [class.text-danger]="!verlag.valid && verlag.touched">
-                <label class="col-sm-2 form-control-label">Verlag *</label>
-                <div class="col-sm-10">
-                    <select class="form-control" [ngFormControl]="verlag" required>
-                        <option value="">Einen Verlag ausw&auml;hlen</option>
-                        <option value="OREILLY">O'Reilly</option>
-                        <option value="PACKT">Packt</option>
-                    </select>
-                </div>
-                <div class="col-sm-offset-2 col-sm-10"
-                     *ngIf="!verlag.valid && verlag.touched">
-                    Ein Verlag ist erforderlich.
-                </div>
-            </div>
-
-            <!-- Fuer DatePicker, Rating usw. gibt es noch keine brauchbaren
-                 AngularJS-Direktiven auf Basis von Bootstrap -->
 
             <div class="form-group row"
                  [class.text-danger]="!preis.valid && preis.touched">
@@ -122,54 +139,15 @@
                 </div>
             </div>
 
-            <div class="form-group row"
-                 [class.text-danger]="!rabatt.valid && rabatt.touched">
-                <label for="rabattInput" class="col-sm-2 form-control-label">
-                    Rabatt *
-                </label>
-                <div class="col-sm-10">
-                    <input id="rabattInput"
-                           placeholder="Rabatt in Prozent, z.B. 5.67"
-                           required
-                           class="form-control"
-                           type="search"
-                           [ngFormControl]="rabatt"/>
-                </div>
-                <div class="col-sm-offset-2 col-sm-10"
-                     *ngIf="!rabatt.valid && rabatt.touched">
-                    Ein Rabatt muss in Prozent eingegeben werden, z.B. 5.67
-                </div>
-            </div>
-
             <div class="form-group row">
-                <label for="lieferbarInput" class="col-sm-2 form-control-label">
-                    Lieferbar?
+                <label for="ausgesondertInput" class="col-sm-2 form-control-label">
+                    Ausgesondert?
                 </label>
                 <div class="col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <input id="lieferbarInput" type="checkbox"
-                                   [ngFormControl]="lieferbar"/>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="schlagwoerterInput" class="col-sm-2 form-control-label">
-                    Schlagw&ouml;rter
-                </label>
-                <div class="col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" [ngFormControl]="schnulze"/>
-                            Schnulze
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"[ngFormControl]="scienceFiction"/>
-                            Science Fiction
+                            <input id="ausgesondertInput" type="checkbox"
+                                   [ngFormControl]="ausgesondert"/>
                         </label>
                     </div>
                 </div>
