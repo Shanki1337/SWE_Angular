@@ -24,6 +24,7 @@ import DetailsArtikel from
 
 import SucheArtikel from '../artikelverwaltung/component/suche_artikel/suche_artikel';
 import SucheArtikelId from '../artikelverwaltung/component/suche_artikel_id/suche_artikel_id';
+import CreateArtikel from '../artikelverwaltung/component/create_artikel/create_artikel';
 
 /* tslint:enable:max-line-length */
 
@@ -49,7 +50,11 @@ const APP_ROUTES: any = {
         name: 'SucheArtikelId',
         component: SucheArtikelId
     },
-
+    createArtikelDef: {
+        path: '/createArtikel',
+        name: 'CreateArtikel',
+        component: CreateArtikel
+    },
     redirect: {path: '/', redirectTo: ['Home']}
 };
 export default APP_ROUTES;

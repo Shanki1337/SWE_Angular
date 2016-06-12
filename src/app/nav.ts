@@ -48,6 +48,11 @@ import {isAdmin} from '../iam/iam';
                         <i class="fa fa-search"></i> &nbsp; Suche Artikel nach ID
                     </a>
                 </div>
+                <div class="list-group-item" *ngIf="isAdmin()">
+                    <a [routerLink]="['CreateArtikel']">
+                        <i class="fa fa-search"></i> &nbsp; Artikel erstellen
+                    </a>
+                </div>
             </div>
 
             <!-- DSL-Pfade durch @RouteConfig([{path: '/...', name: 'Home' ...} -->

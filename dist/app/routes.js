@@ -14,10 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-System.register(['./home', '../artikelverwaltung/component/details_artikel/details_artikel', '../artikelverwaltung/component/suche_artikel/suche_artikel', '../artikelverwaltung/component/suche_artikel_id/suche_artikel_id'], function(exports_1, context_1) {
+System.register(['./home', '../artikelverwaltung/component/details_artikel/details_artikel', '../artikelverwaltung/component/suche_artikel/suche_artikel', '../artikelverwaltung/component/suche_artikel_id/suche_artikel_id', '../artikelverwaltung/component/create_artikel/create_artikel'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var home_1, details_artikel_1, suche_artikel_1, suche_artikel_id_1;
+    var home_1, details_artikel_1, suche_artikel_1, suche_artikel_id_1, create_artikel_1;
     var APP_ROUTES, APP_ROUTE_DEFINITIONS;
     return {
         setters:[
@@ -32,6 +32,9 @@ System.register(['./home', '../artikelverwaltung/component/details_artikel/detai
             },
             function (suche_artikel_id_1_1) {
                 suche_artikel_id_1 = suche_artikel_id_1_1;
+            },
+            function (create_artikel_1_1) {
+                create_artikel_1 = create_artikel_1_1;
             }],
         execute: function() {
             /* tslint:enable:max-line-length */
@@ -55,6 +58,11 @@ System.register(['./home', '../artikelverwaltung/component/details_artikel/detai
                     path: '/sucheArtikelId',
                     name: 'SucheArtikelId',
                     component: suche_artikel_id_1.default
+                },
+                createArtikelDef: {
+                    path: '/createArtikel',
+                    name: 'CreateArtikel',
+                    component: create_artikel_1.default
                 },
                 redirect: { path: '/', redirectTo: ['Home'] }
             };

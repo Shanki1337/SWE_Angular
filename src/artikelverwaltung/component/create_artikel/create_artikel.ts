@@ -93,6 +93,7 @@ export default class CreateArtikel implements OnInit {
         //    valid     true/false
         //    dirty     true/false, falls der Wert geaendert wurde
 
+        console.log('hallo');
         if (!this.form.valid) {
             /* tslint:disable:max-line-length */
             console.log(
