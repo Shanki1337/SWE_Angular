@@ -111,7 +111,6 @@ export default class SuchKriterien {
     find(): boolean {
         const suchkriterien: any = {
             bezeichnung: this.bezeichnung,
-            kategorie: this.kategorie,
         };
         console.log('suchkriterien=', suchkriterien);
 
