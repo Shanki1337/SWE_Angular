@@ -42,13 +42,13 @@ const APP_ROUTES: any = {
         name: 'DetailsArtikel',
         component: DetailsArtikel
     },
-    sucheArtikelDef: {
-        path: '/sucheArtikel',
-        name: 'SucheArtikel',
-        component: SucheArtikel
+    sucheArtikelDef:
+    {path: '/sucheArtikel', name: 'SucheArtikel', component: SucheArtikel},
+    sucheArtikelIdDef: {
+        path: '/sucheArtikelId',
+        name: 'SucheArtikelId',
+        component: SucheArtikelId
     },
-    sucheArtikelIdDef:
-        {path: '/sucheArtikelId', name: 'SucheArtikelId', component: SucheArtikelId},
 
     redirect: {path: '/', redirectTo: ['Home']}
 };
