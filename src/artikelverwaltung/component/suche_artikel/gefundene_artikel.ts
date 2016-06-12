@@ -77,6 +77,12 @@ import {log} from '../../../shared/shared';
                                   <span *ngSwitchDefault>unbekannt</span>
                                 </span>
                             </td>
+                            <td>
+                                <a [routerLink]="['DetailsArtikel', {'id': a._id}]"
+                                   data-toggle="tooltip" title="Details anzeigen">
+                                    <i class="fa fa-search-plus"></i>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
