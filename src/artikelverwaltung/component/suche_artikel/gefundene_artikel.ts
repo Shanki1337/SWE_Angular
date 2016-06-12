@@ -23,7 +23,7 @@ import {Router} from 'angular2/router';
 
 import ArtikelService from '../../service/artikel_service';
 import Artikel from '../../model/artikel';
-// import APP_ROUTES from '../../../app/routes';
+import APP_ROUTES from '../../../app/routes';
 import {log} from '../../../shared/shared';
 
 /**
@@ -113,16 +113,15 @@ export default class GefundeneArtikel {
     }
 
     /**
-     * Das ausgew&auml;hlte bzw. angeklickte Buch in der Detailsseite anzeigen.
-     * @param artikelS Das ausgew&auml;hlte Buch
+     * Das ausgew&auml;hlte bzw. angeklickte Artikel in der Detailsseite anzeigen.
+     * @param artikelS Das ausgew&auml;hlte Artikel
      */
     @log
-    details(artikelS: Artikel): void {
-        // TODO
-        // console.log(`detailsArtikelDef.name=${APP_ROUTES.detailsBuchDef.name}`);
-        //    console.log(`id=${artikelS._id}`);
-        //   this._router.navigate(
-        //       [APP_ROUTES.detailsBuchDef.name, {id: artikelS._id}]);
+    details(artikel: Artikel): void {
+        console.log(`detailsArtikelDef.name=${APP_ROUTES.detailsArtikelDef.name}`);
+        console.log(`id=${artikel._id}`);
+        this._router.navigate(
+            [APP_ROUTES.detailsArtikelDef.name, {id: artikel._id}]);
     }
 
     toString(): String { return 'GefundeneArtikel'; }
