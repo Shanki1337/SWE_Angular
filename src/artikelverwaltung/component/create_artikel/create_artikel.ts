@@ -34,7 +34,10 @@ import {isPresent, log} from '../../../shared/shared';
 
     // Keine Zerlegung in Subkomponenten, weil das Control-Objekt der
     // Subkomponente im Konstruktor fuer die ControlGroup benoetigt wird
-    templateUrl: '/artikelverwaltung/component/create_artikel/create_artikel.html'
+    templateUrl: 
+        '/artikelverwaltung/component/create_artikel/create_artikel.html'
+    
+
 
     // FIXME Relative URL https://github.com/angular/angular/issues/2383
     //       erfordert TypeScript 1.8 wg. Moment und CommonJS
@@ -53,8 +56,8 @@ export default class CreateArtikel implements OnInit {
     rating: Control = new Control('');
     kategorie: Control = new Control({checked: true});
     preis: Control = new Control('');
-    ausgesondert: Control = new Control({checked: true});
-    
+    ausgesondert: Control = new Control({checked: true}
+    );
     constructor(
         private _formBuilder: FormBuilder,
         private _artikelService: ArtikelService, private _router: Router) {
@@ -118,10 +121,13 @@ export default class CreateArtikel implements OnInit {
         };
         const errorFn: (status: number, text: string) => void =
             (status: number, text: string = null): void => {
-                console.log(`CreateArtikel.save(): errorFn(): status: ${status}`);
+                console.log(
+                    `CreateArtikel.save(): errorFn(): status: ${status}`);
                 if (isPresent(text)) {
-                    console.log(`CreateArtikel.save(): errorFn(): text: ${text}`);
+                    console.log(
+                        `CreateArtikel.save(): errorFn(): text: ${text}`);
                 }
+                /* tslint:enable:max-line-length */
             };
         this._artikelService.save(neuerArtikel, successFn, errorFn);
 

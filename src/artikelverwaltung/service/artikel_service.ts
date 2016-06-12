@@ -24,7 +24,7 @@ import {IChart, ChartDataSet, LinearChartData, CircularChartData} from 'chart.js
 import Artikel from '../model/artikel';
 import {IArtikelServer, IArtikelForm} from '../model/artikel';
 // import AbstractArtikelService from './abstract_artikel_service';
-import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG , isBlank, isPresent, isEmpty, log} from '../../shared/shared';
+import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
 /* tslint:enable:max-line-length */
 
 // Methoden der Klasse Http
@@ -64,15 +64,14 @@ export default class ArtikelService {
         @Inject(Http) private _http: Http) {
         this._baseUriArtikel = `${BASE_URI}${PATH_ARTIKEL}`;
         this._baseUriKatalog = `${BASE_URI}${PATH_KATALOG}`;
-        console.log(
-            `ArtikelService.constructor(): 
+        console.log(`ArtikelService.constructor(): 
                 baseUriArtikel${this._baseUriArtikel}
                 baseUriKatalog${this._baseUriKatalog}`);
     }
 
     /**
      * Ein Buch-Objekt puffern.
-     * @param buch Das Buch-Objekt, das gepuffert wird.
+     * @param artikel Das Artikel-Objekt, das gepuffert wird.
      * @return void
      */
     set artikel(artikel: Artikel) {
@@ -82,8 +81,7 @@ export default class ArtikelService {
 
     @log
     observeArtikelz(
-        observerFn: (artikelz: Array<Artikel>) => void, thisArg: any):
-        void {
+        observerFn: (artikelz: Array<Artikel>) => void, thisArg: any): void {
         this._artikelzEmitter.forEach(observerFn, thisArg);
     }
 
@@ -141,7 +139,6 @@ export default class ArtikelService {
      */
     @log
     findById(id: string): void {
-         // Gibt es ein gepuffertes Buch mit der gesuchten ID?
         if (isPresent(this._artikel) && this._artikel._id === id) {
             this._artikelEmitter.emit(this._artikel);
             return;
@@ -165,28 +162,27 @@ export default class ArtikelService {
     }
 
     /**
-     * Ein neues Buch anlegen
-     * @param neuesBuch Das JSON-Objekt mit dem neuen Buch
+     * Ein neuen Artikel anlegen
+     * @param neuerArtikel Das JSON-Objekt mit dem neuen Buch
      * @param successFn Die Callback-Function fuer den Erfolgsfall
      * @param errorFn Die Callback-Function fuer den Fehlerfall
      */
-    /*
     @log
     save(
-        neuesBuch: Buch, successFn: (location: string) => void,
+        neuerArtikel: Artikel, successFn: (location: string) => void,
         errorFn: (status: number, text: string) => void): void {
-        neuesBuch.datum = moment(new Date());
+        neuerArtikel.datum = moment(new Date());
 
         const uri: string = this._baseUriBuecher;
         const body: string = JSON.stringify(neuesBuch.toJSON());
         console.log('body=', body);
 
         const headers: Headers =
-            new Headers({ 'Content-Type': 'application/json' });
+            new Headers({'Content-Type': 'application/json'});
         headers.append('Authorization', getAuthorization());
         // RequestOptionsArgs in
         // node_modules\angular2\ts\src\http\interfaces.ts
-        const options: RequestOptionsArgs = { headers: headers };
+        const options: RequestOptionsArgs = {headers: headers};
         console.log('options=', options);
 
         const nextFn: ((response: Response) => void) = (response: Response) => {
@@ -204,9 +200,7 @@ export default class ArtikelService {
                 }
             };
         this._http.post(uri, body, options).subscribe(nextFn, errorFnPost);
-
     }
-    */
 
     // http://www.sitepoint.com/15-best-javascript-charting-libraries
     // http://thenextweb.com/dd/2015/06/12/20-best-javascript-chart-libraries
