@@ -49,12 +49,11 @@ import {isPresent, log} from '../../../shared/shared';
 export default class CreateArtikel implements OnInit {
     form: ControlGroup;
     // Keine Vorbelegung bzw. der leere String, da es Placeholder gibt
-    bezeichnung: Control =
-        new Control('bezeichnung', ArtikelValidator.bezeichnung);
-    rating: Control = new Control('rating');
-    kategorie: Control = new Control('art');
-    preis: Control = new Control('preis');
-    ausgesondert: Control = new Control({checked: true});
+    bezeichnung: Control = new Control('', ArtikelValidator.bezeichnung);
+    rating: Control = new Control('');
+    kategorie: Control = new Control('');
+    preis: Control = new Control('');
+    ausgesondert: Control = new Control(false);
     constructor(
         private _formBuilder: FormBuilder,
         private _artikelService: ArtikelService, private _router: Router) {
@@ -93,7 +92,7 @@ export default class CreateArtikel implements OnInit {
         //    errors    Map<string,any> mit den Fehlern, z.B. {'required': true}
         //    valid     true/false
         //    dirty     true/false, falls der Wert geaendert wurde
-        console.log(this.form);
+        console.log(this.form.valid);
         if (!this.form.valid) {
             /* tslint:disable:max-line-length */
             console.log(

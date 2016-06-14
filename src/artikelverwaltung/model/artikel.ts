@@ -15,8 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// import {RadioButtonState} from 'angular2/common';
-
+import {RadioButtonState} from 'angular2/common';
 // import {isBlank, isPresent} from '../../shared/shared';
 
 /* tslint:disable:max-line-length */
@@ -72,6 +71,14 @@ export interface IArtikelServer extends IArtikelShared {
 export interface IArtikelForm extends IArtikelShared {
     preis: string;
     rating?: string;
+    bad: RadioButtonState;
+    buero: RadioButtonState;
+    diele: RadioButtonState;
+    esszimmer: RadioButtonState;
+    kinderzimmer: RadioButtonState;
+    kueche: RadioButtonState;
+    schlafzimmer: RadioButtonState;
+    wohnzimmer: RadioButtonState;
 }
 
 /**
@@ -124,10 +131,34 @@ export default class Artikel {
      * @return Das initialisierte Buch-Objekt
      */
     static fromForm(artikelForm: IArtikelForm): Artikel {
+        /* tslint:disable:max-line-length */
+        var art:
+            'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER' =
+                'BAD';
+        /* tslint:enable:max-line-length */
+        if (artikelForm.bad.checked) {
+            art = 'BAD';
+        } else if (artikelForm.buero.checked) {
+            art = 'BUERO';
+        } else if (artikelForm.diele.checked) {
+            art = 'DIELE';
+        } else if (artikelForm.esszimmer.checked) {
+            art = 'ESSZIMMER';
+        } else if (artikelForm.kinderzimmer.checked) {
+            art = 'KINDERZIMMER';
+        } else if (artikelForm.kueche.checked) {
+            art = 'KUECHE';
+        } else if (artikelForm.schlafzimmer.checked) {
+            art = 'SCHLAFZIMMER';
+        } else if (artikelForm.wohnzimmer.checked) {
+            art = 'WOHNZIMMER';
+        }
+        console.log('fromForm, art: ');
+        console.log(art.toString());
         // preis und rabatt muss von string in number konvertiert werden
         const artikel: Artikel = new Artikel(
             artikelForm._id, artikelForm.bezeichnung,
-            parseInt(artikelForm.rating, 10), artikelForm.kategorie,
+            parseInt(artikelForm.rating, 10), art,
             parseInt(artikelForm.preis, 10), artikelForm.ausgesondert);
         console.log('Artikel.fromForm(): artikel=', artikel);
         return artikel;

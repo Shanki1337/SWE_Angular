@@ -21,7 +21,6 @@ System.register([], function(exports_1, context_1) {
     return {
         setters:[],
         execute: function() {
-            // import {RadioButtonState} from 'angular2/common';
             // import {isBlank, isPresent} from '../../shared/shared';
             /* tslint:disable:max-line-length */
             // https://github.com/urish/angular2-moment/blob/master/TimeAgoPipe.ts
@@ -80,8 +79,37 @@ System.register([], function(exports_1, context_1) {
                  * @return Das initialisierte Buch-Objekt
                  */
                 static fromForm(artikelForm) {
+                    /* tslint:disable:max-line-length */
+                    var art = 'BAD';
+                    /* tslint:enable:max-line-length */
+                    if (artikelForm.bad.checked) {
+                        art = 'BAD';
+                    }
+                    else if (artikelForm.buero.checked) {
+                        art = 'BUERO';
+                    }
+                    else if (artikelForm.diele.checked) {
+                        art = 'DIELE';
+                    }
+                    else if (artikelForm.esszimmer.checked) {
+                        art = 'ESSZIMMER';
+                    }
+                    else if (artikelForm.kinderzimmer.checked) {
+                        art = 'KINDERZIMMER';
+                    }
+                    else if (artikelForm.kueche.checked) {
+                        art = 'KUECHE';
+                    }
+                    else if (artikelForm.schlafzimmer.checked) {
+                        art = 'SCHLAFZIMMER';
+                    }
+                    else if (artikelForm.wohnzimmer.checked) {
+                        art = 'WOHNZIMMER';
+                    }
+                    console.log('fromForm, art: ');
+                    console.log(art.toString());
                     // preis und rabatt muss von string in number konvertiert werden
-                    const artikel = new Artikel(artikelForm._id, artikelForm.bezeichnung, parseInt(artikelForm.rating, 10), artikelForm.kategorie, parseInt(artikelForm.preis, 10), artikelForm.ausgesondert);
+                    const artikel = new Artikel(artikelForm._id, artikelForm.bezeichnung, parseInt(artikelForm.rating, 10), art, parseInt(artikelForm.preis, 10), artikelForm.ausgesondert);
                     console.log('Artikel.fromForm(): artikel=', artikel);
                     return artikel;
                 }
