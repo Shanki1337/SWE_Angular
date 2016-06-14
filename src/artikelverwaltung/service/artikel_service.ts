@@ -199,6 +199,7 @@ export default class ArtikelService {
                 }
             };
         this._http.post(uri, body, options).subscribe(nextFn, errorFnPost);
+        return;
     }
 
     // http://www.sitepoint.com/15-best-javascript-charting-libraries

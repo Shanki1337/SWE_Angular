@@ -189,6 +189,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                         }
                     };
                     this._http.post(uri, body, options).subscribe(nextFn, errorFnPost);
+                    return;
                 }
                 // http://www.sitepoint.com/15-best-javascript-charting-libraries
                 // http://thenextweb.com/dd/2015/06/12/20-best-javascript-chart-libraries
