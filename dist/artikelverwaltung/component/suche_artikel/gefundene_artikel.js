@@ -68,8 +68,8 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                  */
                 details(artikel) {
                     console.log(`detailsArtikelDef.name=${routes_1.default.detailsArtikelDef.name}`);
-                    console.log(`id=${artikel._id}`);
-                    this._router.navigate([routes_1.default.detailsArtikelDef.name, { id: artikel._id }]);
+                    console.log(`id=${artikel.id}`);
+                    this._router.navigate([routes_1.default.detailsArtikelDef.name, { id: artikel.id }]);
                 }
                 toString() { return 'GefundeneArtikel'; }
             };
@@ -117,7 +117,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                         <!-- Event-Binding: statt (click) auch on-click -->
                         <tr *ngFor="#a of artikel; #i = index" (click)="details(a)">
                             <td>{{i + 1}}</td>
-                            <td>{{a._id}}</td>
+                            <td>{{a.id}}</td>
                             <td>{{a.bezeichnung}}</td>
                             <td>
                                 <span [ngSwitch]="a.kategorie">
@@ -133,7 +133,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                                 </span>
                             </td>
                             <td>
-                                <a [routerLink]="['DetailsArtikel', {'id': a._id}]"
+                                <a [routerLink]="['DetailsArtikel', {'id': a.id}]"
                                    data-toggle="tooltip" title="Details anzeigen">
                                     <i class="fa fa-search-plus"></i>
                                 </a>

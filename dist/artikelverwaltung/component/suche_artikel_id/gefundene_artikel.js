@@ -67,8 +67,8 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                  */
                 details(artikel) {
                     console.log(`detailsArtikelDef.name=${routes_1.default.detailsArtikelDef.name}`);
-                    console.log(`id=${artikel._id}`);
-                    this._router.navigate([routes_1.default.detailsArtikelDef.name, { id: artikel._id }]);
+                    console.log(`id=${artikel.id}`);
+                    this._router.navigate([routes_1.default.detailsArtikelDef.name, { id: artikel.id }]);
                 }
                 toString() { return 'GefundeneArtikel'; }
             };
@@ -116,7 +116,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                         <!-- Event-Binding: statt (click) auch on-click -->
                         <tr>
                             <td>{{1}}</td>
-                            <td>{{artikel._id}}</td>
+                            <td>{{artikel.id}}</td>
                             <td>{{artikel.bezeichnung}}</td>
                             <td>
                                 <span [ngSwitch]="artikel.kategorie">
@@ -135,7 +135,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                                 <!-- Pfad /detailsBuch/:id, @RouteConfig in app.ts -->
                                 <!-- modaler Dialog als Alternative: -->
                                 <!-- http://v4-alpha.getbootstrap.com/components/modal -->
-                                <a [routerLink]="['DetailsArtikel', {'id': artikel._id}]"
+                                <a [routerLink]="['DetailsArtikel', {'id': artikel.id}]"
                                    data-toggle="tooltip" title="Details anzeigen">
                                     <i class="fa fa-search-plus"></i>
                                 </a>

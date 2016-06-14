@@ -69,7 +69,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
                 ngOnInit() {
                     this._observeArtikel();
                     this._observeError();
-                    // Pfad-Parameter aus /detailsBuch/:_id
+                    // Pfad-Parameter aus /detailsBuch/:id
                     const id = this._routeParams.params['id'];
                     console.log(`DetailsArtikel.ngOnInit(): id= ${id}`);
                     this._artikelService.findById(id);
@@ -114,7 +114,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../s
         <waiting [activated]="waiting"></waiting>
 
         <section *ngIf="artikel !== null">
-            <h4>Artikel {{artikel._id}}:</h4>
+            <h4>Artikel {{artikel.id}}:</h4>
 
             <!-- http://v4-alpha.getbootstrap.com/components/navs/#tabs -->
             <ul class="nav nav-tabs">

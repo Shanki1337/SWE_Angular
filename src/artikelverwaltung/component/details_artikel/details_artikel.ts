@@ -35,7 +35,7 @@ import {isString, Waiting, ErrorMessage} from '../../../shared/shared';
         <waiting [activated]="waiting"></waiting>
 
         <section *ngIf="artikel !== null">
-            <h4>Artikel {{artikel._id}}:</h4>
+            <h4>Artikel {{artikel.id}}:</h4>
 
             <!-- http://v4-alpha.getbootstrap.com/components/navs/#tabs -->
             <ul class="nav nav-tabs">
@@ -75,7 +75,7 @@ export default class DetailsArtikel implements OnInit {
         this._observeArtikel();
         this._observeError();
 
-        // Pfad-Parameter aus /detailsBuch/:_id
+        // Pfad-Parameter aus /detailsBuch/:id
         const id: string = this._routeParams.params['id'];
         console.log(`DetailsArtikel.ngOnInit(): id= ${id}`);
         this._artikelService.findById(id);

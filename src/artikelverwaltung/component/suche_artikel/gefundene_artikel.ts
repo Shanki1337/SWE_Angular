@@ -62,7 +62,7 @@ import {log} from '../../../shared/shared';
                         <!-- Event-Binding: statt (click) auch on-click -->
                         <tr *ngFor="#a of artikel; #i = index" (click)="details(a)">
                             <td>{{i + 1}}</td>
-                            <td>{{a._id}}</td>
+                            <td>{{a.id}}</td>
                             <td>{{a.bezeichnung}}</td>
                             <td>
                                 <span [ngSwitch]="a.kategorie">
@@ -78,7 +78,7 @@ import {log} from '../../../shared/shared';
                                 </span>
                             </td>
                             <td>
-                                <a [routerLink]="['DetailsArtikel', {'id': a._id}]"
+                                <a [routerLink]="['DetailsArtikel', {'id': a.id}]"
                                    data-toggle="tooltip" title="Details anzeigen">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -121,9 +121,9 @@ export default class GefundeneArtikel {
     details(artikel: Artikel): void {
         console.log(
             `detailsArtikelDef.name=${APP_ROUTES.detailsArtikelDef.name}`);
-        console.log(`id=${artikel._id}`);
+        console.log(`id=${artikel.id}`);
         this._router.navigate(
-            [APP_ROUTES.detailsArtikelDef.name, {id: artikel._id}]);
+            [APP_ROUTES.detailsArtikelDef.name, {id: artikel.id}]);
     }
 
     toString(): String { return 'GefundeneArtikel'; }

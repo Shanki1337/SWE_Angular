@@ -62,7 +62,7 @@ import {log} from '../../../shared/shared';
                         <!-- Event-Binding: statt (click) auch on-click -->
                         <tr>
                             <td>{{1}}</td>
-                            <td>{{artikel._id}}</td>
+                            <td>{{artikel.id}}</td>
                             <td>{{artikel.bezeichnung}}</td>
                             <td>
                                 <span [ngSwitch]="artikel.kategorie">
@@ -81,7 +81,7 @@ import {log} from '../../../shared/shared';
                                 <!-- Pfad /detailsBuch/:id, @RouteConfig in app.ts -->
                                 <!-- modaler Dialog als Alternative: -->
                                 <!-- http://v4-alpha.getbootstrap.com/components/modal -->
-                                <a [routerLink]="['DetailsArtikel', {'id': artikel._id}]"
+                                <a [routerLink]="['DetailsArtikel', {'id': artikel.id}]"
                                    data-toggle="tooltip" title="Details anzeigen">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -122,9 +122,9 @@ export default class GefundeneArtikel {
     details(artikel: Artikel): void {
         console.log(
             `detailsArtikelDef.name=${APP_ROUTES.detailsArtikelDef.name}`);
-        console.log(`id=${artikel._id}`);
+        console.log(`id=${artikel.id}`);
         this._router.navigate(
-            [APP_ROUTES.detailsArtikelDef.name, {id: artikel._id}]);
+            [APP_ROUTES.detailsArtikelDef.name, {id: artikel.id}]);
     }
 
     toString(): String { return 'GefundeneArtikel'; }

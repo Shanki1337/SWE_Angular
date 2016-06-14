@@ -40,15 +40,15 @@ System.register([], function(exports_1, context_1) {
             class Artikel {
                 // wird i.a. nicht direkt aufgerufen, sondern Buch.fromServer oder
                 // Buch.fromForm
-                constructor(_id, bezeichnung, rating, kategorie, preis, ausgesondert) {
-                    this._id = _id;
+                constructor(id, bezeichnung, rating, kategorie, preis, ausgesondert) {
+                    this.id = id;
                     this.bezeichnung = bezeichnung;
                     this.rating = rating;
                     this.kategorie = kategorie;
                     this.preis = preis;
                     this.ausgesondert = ausgesondert;
                     this.ratingArray = [];
-                    this._id = _id || null;
+                    this.id = id || null;
                     this.bezeichnung = bezeichnung || null;
                     this.rating = rating || null;
                     this.kategorie = kategorie || null;
@@ -69,7 +69,7 @@ System.register([], function(exports_1, context_1) {
                  * @return Das initialisierte Buch-Objekt
                  */
                 static fromServer(artikelServer) {
-                    const artikel = new Artikel(artikelServer._id, artikelServer.bezeichnung, artikelServer.rating, artikelServer.kategorie, artikelServer.preis, artikelServer.ausgesondert);
+                    const artikel = new Artikel(artikelServer.id, artikelServer.bezeichnung, artikelServer.rating, artikelServer.kategorie, artikelServer.preis, artikelServer.ausgesondert);
                     console.log('Artikel.fromServer(): artikel=', artikel);
                     return artikel;
                 }
@@ -80,36 +80,47 @@ System.register([], function(exports_1, context_1) {
                  */
                 static fromForm(artikelForm) {
                     /* tslint:disable:max-line-length */
-                    var art = 'BAD';
+                    console.log('fromForm');
+                    var art = 'BUERO';
                     /* tslint:enable:max-line-length */
-                    if (artikelForm.bad.checked) {
-                        art = 'BAD';
+                    console.log('fromForm, art: ' + art);
+                    try {
+                        if (artikelForm.bad.checked) {
+                            art = 'BAD';
+                        }
+                        else if (artikelForm.buero.checked) {
+                            art = 'BUERO';
+                        }
+                        else if (artikelForm.diele.checked) {
+                            art = 'DIELE';
+                            console.log('hallo diele');
+                        }
+                        else if (artikelForm.esszimmer.checked) {
+                            art = 'ESSZIMMER';
+                        }
+                        else if (artikelForm.kinderzimmer.checked) {
+                            art = 'KINDERZIMMER';
+                        }
+                        else if (artikelForm.kueche.checked) {
+                            art = 'KUECHE';
+                        }
+                        else if (artikelForm.schlafzimmer.checked) {
+                            art = 'SCHLAFZIMMER';
+                        }
+                        else if (artikelForm.wohnzimmer.checked) {
+                            art = 'WOHNZIMMER';
+                        }
                     }
-                    else if (artikelForm.buero.checked) {
-                        art = 'BUERO';
-                    }
-                    else if (artikelForm.diele.checked) {
-                        art = 'DIELE';
-                    }
-                    else if (artikelForm.esszimmer.checked) {
-                        art = 'ESSZIMMER';
-                    }
-                    else if (artikelForm.kinderzimmer.checked) {
-                        art = 'KINDERZIMMER';
-                    }
-                    else if (artikelForm.kueche.checked) {
-                        art = 'KUECHE';
-                    }
-                    else if (artikelForm.schlafzimmer.checked) {
-                        art = 'SCHLAFZIMMER';
-                    }
-                    else if (artikelForm.wohnzimmer.checked) {
-                        art = 'WOHNZIMMER';
+                    catch (e) {
+                        console.log('Error', e.message);
                     }
                     console.log('fromForm, art: ');
                     console.log(art.toString());
                     // preis und rabatt muss von string in number konvertiert werden
-                    const artikel = new Artikel(artikelForm._id, artikelForm.bezeichnung, parseInt(artikelForm.rating, 10), art, parseInt(artikelForm.preis, 10), artikelForm.ausgesondert);
+                    // parseInt(artikelForm.preis, 10)
+                    // artikelForm.ausgesondert
+                    // parseInt(artikelForm.rating, 10)
+                    const artikel = new Artikel(artikelForm.id, artikelForm.bezeichnung, 3, art, 121.22, true);
                     console.log('Artikel.fromForm(): artikel=', artikel);
                     return artikel;
                 }
@@ -124,7 +135,7 @@ System.register([], function(exports_1, context_1) {
                     return this.bezeichnung.toLowerCase().includes(bezeichnung.toLowerCase());
                 }
                 containsId(id) {
-                    return this._id.toLowerCase().includes(id.toLowerCase());
+                    return this.id.toLowerCase().includes(id.toLowerCase());
                 }
                 /**
                  * Die Bewertung ("rating") des Buches um 1 erh&ouml;hen
@@ -202,7 +213,7 @@ System.register([], function(exports_1, context_1) {
                  */
                 toJSON() {
                     return {
-                        _id: this._id,
+                        id: this.id,
                         bezeichnung: this.bezeichnung,
                         rating: this.rating,
                         kategorie: this.kategorie,

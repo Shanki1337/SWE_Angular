@@ -24,8 +24,8 @@ import {IChart, ChartDataSet, LinearChartData, CircularChartData} from 'chart.js
 import Artikel from '../model/artikel';
 import {IArtikelServer, IArtikelForm} from '../model/artikel';
 // import AbstractArtikelService from './abstract_artikel_service';
-import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
-import {getAuthorization} from '../../iam/iam';
+import {ChartService, toBase64, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
+// import {getAuthorization} from '../../iam/iam';
 /* tslint:enable:max-line-length */
 
 // Methoden der Klasse Http
@@ -140,7 +140,7 @@ export default class ArtikelService {
      */
     @log
     findById(id: string): void {
-        if (isPresent(this._artikel) && this._artikel._id === id) {
+        if (isPresent(this._artikel) && this._artikel.id === id) {
             this._artikelEmitter.emit(this._artikel);
             return;
         }
@@ -175,9 +175,10 @@ export default class ArtikelService {
         const uri: string = this._baseUriArtikel;
         const body: string = JSON.stringify(neuerArtikel.toJSON());
         console.log('body=', body);
+        const authorizationValue: string = `Basic ${toBase64('admin', 'p')}`;
         const headers: Headers =
             new Headers({'Content-Type': 'application/json'});
-        headers.append('Authorization', getAuthorization());
+        headers.append('Authorization', authorizationValue);
         // RequestOptionsArgs in
         // node_modules\angular2\ts\src\http\interfaces.ts
         const options: RequestOptionsArgs = {headers: headers};
@@ -306,8 +307,8 @@ export default class ArtikelService {
         URLSearchParams {
         const searchParams: URLSearchParams = new URLSearchParams();
 
-        if (!isEmpty(suchkriterien._id)) {
-            searchParams.set('id', suchkriterien._id);
+        if (!isEmpty(suchkriterien.id)) {
+            searchParams.set('id', suchkriterien.id);
         }
         if (!isEmpty(suchkriterien.bezeichnung)) {
             searchParams.set('bezeichnung', suchkriterien.bezeichnung);
@@ -348,7 +349,7 @@ export default class ArtikelService {
     private _createBarChart(
         chartElement: HTMLCanvasElement, artikelz: Array<Artikel>): void {
         const labels: Array<string> =
-            artikelz.map((artikel: Artikel) => artikel._id);
+            artikelz.map((artikel: Artikel) => artikel.id);
         const datasets: Array<ChartDataSet> = [{
             label: 'Bewertungen',
             fillColor: 'rgba(220,220,220,0.2)',
@@ -375,7 +376,7 @@ export default class ArtikelService {
     private _createLineChart(
         chartElement: HTMLCanvasElement, artikelz: Array<Artikel>): void {
         const labels: Array<string> =
-            artikelz.map((artikel: Artikel) => artikel._id);
+            artikelz.map((artikel: Artikel) => artikel.id);
         const datasets: Array<ChartDataSet> = [{
             label: 'Bewertungen',
             fillColor: 'rgba(220,220,220,0.2)',
@@ -412,7 +413,7 @@ export default class ArtikelService {
                 value: artikel.rating,
                 color: this._chartService.getColorPie(i),
                 highlight: this._chartService.getHighlightPie(i),
-                label: `${artikel._id}`
+                label: `${artikel.id}`
             };
             pieData[i] = data;
         });

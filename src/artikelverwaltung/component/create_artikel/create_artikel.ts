@@ -92,7 +92,6 @@ export default class CreateArtikel implements OnInit {
         //    errors    Map<string,any> mit den Fehlern, z.B. {'required': true}
         //    valid     true/false
         //    dirty     true/false, falls der Wert geaendert wurde
-        console.log(this.form.valid);
         if (!this.form.valid) {
             /* tslint:disable:max-line-length */
             console.log(
@@ -100,7 +99,6 @@ export default class CreateArtikel implements OnInit {
             /* tslint:enable:max-line-length */
             return false;
         }
-
         const neuerArtikel: Artikel = Artikel.fromForm(this.form.value);
         console.log('neuerArtikel=', neuerArtikel);
 

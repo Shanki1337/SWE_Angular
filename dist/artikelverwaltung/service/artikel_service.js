@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../shared/shared', '../../iam/iam'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../shared/shared'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -29,7 +29,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
     var __param = (this && this.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
-    var core_1, http_1, artikel_1, shared_1, iam_1;
+    var core_1, http_1, artikel_1, shared_1;
     var ArtikelService, ARTIKEL_SERVICE_PROVIDER;
     return {
         setters:[
@@ -44,11 +44,9 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
             },
             function (shared_1_1) {
                 shared_1 = shared_1_1;
-            },
-            function (iam_1_1) {
-                iam_1 = iam_1_1;
             }],
         execute: function() {
+            // import {getAuthorization} from '../../iam/iam';
             /* tslint:enable:max-line-length */
             // Methoden der Klasse Http
             //  * get(url, options) – HTTP GET request
@@ -140,7 +138,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                  * @param id Die ID des gesuchten Buchs
                  */
                 findById(id) {
-                    if (shared_1.isPresent(this._artikel) && this._artikel._id === id) {
+                    if (shared_1.isPresent(this._artikel) && this._artikel.id === id) {
                         this._artikelEmitter.emit(this._artikel);
                         return;
                     }
@@ -170,8 +168,9 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                     const uri = this._baseUriArtikel;
                     const body = JSON.stringify(neuerArtikel.toJSON());
                     console.log('body=', body);
+                    const authorizationValue = `Basic ${shared_1.toBase64('admin', 'p')}`;
                     const headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-                    headers.append('Authorization', iam_1.getAuthorization());
+                    headers.append('Authorization', authorizationValue);
                     // RequestOptionsArgs in
                     // node_modules\angular2\ts\src\http\interfaces.ts
                     const options = { headers: headers };
@@ -275,8 +274,8 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                  */
                 _suchkriterienToSearchParams(suchkriterien) {
                     const searchParams = new http_1.URLSearchParams();
-                    if (!shared_1.isEmpty(suchkriterien._id)) {
-                        searchParams.set('id', suchkriterien._id);
+                    if (!shared_1.isEmpty(suchkriterien.id)) {
+                        searchParams.set('id', suchkriterien.id);
                     }
                     if (!shared_1.isEmpty(suchkriterien.bezeichnung)) {
                         searchParams.set('bezeichnung', suchkriterien.bezeichnung);
@@ -308,7 +307,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                  * @param buecher Die zu ber&uecksichtigenden B&uuml;cher
                  */
                 _createBarChart(chartElement, artikelz) {
-                    const labels = artikelz.map((artikel) => artikel._id);
+                    const labels = artikelz.map((artikel) => artikel.id);
                     const datasets = [{
                             label: 'Bewertungen',
                             fillColor: 'rgba(220,220,220,0.2)',
@@ -330,7 +329,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                  * @param buecher Die zu ber&uecksichtigenden B&uuml;cher
                  */
                 _createLineChart(chartElement, artikelz) {
-                    const labels = artikelz.map((artikel) => artikel._id);
+                    const labels = artikelz.map((artikel) => artikel.id);
                     const datasets = [{
                             label: 'Bewertungen',
                             fillColor: 'rgba(220,220,220,0.2)',
@@ -362,7 +361,7 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                             value: artikel.rating,
                             color: this._chartService.getColorPie(i),
                             highlight: this._chartService.getHighlightPie(i),
-                            label: `${artikel._id}`
+                            label: `${artikel.id}`
                         };
                         pieData[i] = data;
                     });

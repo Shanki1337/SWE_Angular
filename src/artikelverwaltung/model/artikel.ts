@@ -36,7 +36,7 @@ const MAX_RATING: number = 5;
  * (z.B. RESTful Web Service) oder von einem Formular kommen.
  */
 export interface IArtikelShared {
-    _id?: string;
+    id?: string;
     bezeichnung: string;
     kategorie:
         /* tslint:disable:max-line-length */
@@ -91,12 +91,12 @@ export default class Artikel {
     // wird i.a. nicht direkt aufgerufen, sondern Buch.fromServer oder
     // Buch.fromForm
     constructor(
-        public _id: string, public bezeichnung: string, public rating: number,
+        public id: string, public bezeichnung: string, public rating: number,
         public kategorie:
             /* tslint:disable:max-line-length */
         'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER',
         public preis: number, public ausgesondert: boolean) {
-        this._id = _id || null;
+        this.id = id || null;
         this.bezeichnung = bezeichnung || null;
         this.rating = rating || null;
         this.kategorie = kategorie || null;
@@ -118,7 +118,7 @@ export default class Artikel {
      */
     static fromServer(artikelServer: IArtikelServer): Artikel {
         const artikel: Artikel = new Artikel(
-            artikelServer._id, artikelServer.bezeichnung, artikelServer.rating,
+            artikelServer.id, artikelServer.bezeichnung, artikelServer.rating,
             artikelServer.kategorie, artikelServer.preis,
             artikelServer.ausgesondert);
         console.log('Artikel.fromServer(): artikel=', artikel);
@@ -132,34 +132,42 @@ export default class Artikel {
      */
     static fromForm(artikelForm: IArtikelForm): Artikel {
         /* tslint:disable:max-line-length */
+        console.log('fromForm');
         var art:
             'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER' =
-                'BAD';
+                'BUERO';
         /* tslint:enable:max-line-length */
-        if (artikelForm.bad.checked) {
-            art = 'BAD';
-        } else if (artikelForm.buero.checked) {
-            art = 'BUERO';
-        } else if (artikelForm.diele.checked) {
-            art = 'DIELE';
-        } else if (artikelForm.esszimmer.checked) {
-            art = 'ESSZIMMER';
-        } else if (artikelForm.kinderzimmer.checked) {
-            art = 'KINDERZIMMER';
-        } else if (artikelForm.kueche.checked) {
-            art = 'KUECHE';
-        } else if (artikelForm.schlafzimmer.checked) {
-            art = 'SCHLAFZIMMER';
-        } else if (artikelForm.wohnzimmer.checked) {
-            art = 'WOHNZIMMER';
+        console.log('fromForm, art: ' + art);
+        try {
+            if (artikelForm.bad.checked) {
+                art = 'BAD';
+            } else if (artikelForm.buero.checked) {
+                art = 'BUERO';
+            } else if (artikelForm.diele.checked) {
+                art = 'DIELE';
+                console.log('hallo diele');
+            } else if (artikelForm.esszimmer.checked) {
+                art = 'ESSZIMMER';
+            } else if (artikelForm.kinderzimmer.checked) {
+                art = 'KINDERZIMMER';
+            } else if (artikelForm.kueche.checked) {
+                art = 'KUECHE';
+            } else if (artikelForm.schlafzimmer.checked) {
+                art = 'SCHLAFZIMMER';
+            } else if (artikelForm.wohnzimmer.checked) {
+                art = 'WOHNZIMMER';
+            }
+        } catch (e) {
+            console.log('Error', e.message);
         }
         console.log('fromForm, art: ');
         console.log(art.toString());
         // preis und rabatt muss von string in number konvertiert werden
+        // parseInt(artikelForm.preis, 10)
+        // artikelForm.ausgesondert
+        // parseInt(artikelForm.rating, 10)
         const artikel: Artikel = new Artikel(
-            artikelForm._id, artikelForm.bezeichnung,
-            parseInt(artikelForm.rating, 10), art,
-            parseInt(artikelForm.preis, 10), artikelForm.ausgesondert);
+            artikelForm.id, artikelForm.bezeichnung, 3, art, 121.22, true);
         console.log('Artikel.fromForm(): artikel=', artikel);
         return artikel;
     }
@@ -177,7 +185,7 @@ export default class Artikel {
     }
 
     containsId(id: string): boolean {
-        return this._id.toLowerCase().includes(id.toLowerCase());
+        return this.id.toLowerCase().includes(id.toLowerCase());
     }
 
     /**
@@ -266,7 +274,7 @@ export default class Artikel {
      */
     toJSON(): IArtikelServer {
         return {
-            _id: this._id,
+            id: this.id,
             bezeichnung: this.bezeichnung,
             rating: this.rating,
             kategorie: this.kategorie,
