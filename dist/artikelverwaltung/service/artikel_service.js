@@ -178,6 +178,10 @@ System.register(['angular2/core', 'angular2/http', '../model/artikel', '../../sh
                     const nextFn = (response) => {
                         if (response.status === 201) {
                             // TODO Das Response-Objekt enthaelt im Header NICHT "Location"
+                            console.log('statusText:');
+                            console.log(response.statusText);
+                            console.log('headers: ');
+                            console.log(response.headers);
                             successFn(null);
                             return;
                         }

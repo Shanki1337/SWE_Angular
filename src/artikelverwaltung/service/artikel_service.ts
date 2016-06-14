@@ -175,9 +175,10 @@ export default class ArtikelService {
         const uri: string = this._baseUriArtikel;
         const body: string = JSON.stringify(neuerArtikel.toJSON());
         console.log('body=', body);
-        const authorizationValue: string = `Basic ${toBase64('admin', 'p')}`;
         const headers: Headers =
             new Headers({'Content-Type': 'application/json'});
+        // BasicAuth generating
+        const authorizationValue: string = `Basic ${toBase64('admin', 'p')}`;
         headers.append('Authorization', authorizationValue);
         // RequestOptionsArgs in
         // node_modules\angular2\ts\src\http\interfaces.ts
@@ -187,6 +188,10 @@ export default class ArtikelService {
         const nextFn: ((response: Response) => void) = (response: Response) => {
             if (response.status === 201) {
                 // TODO Das Response-Objekt enthaelt im Header NICHT "Location"
+                console.log('statusText:');
+                console.log(response.statusText);
+                console.log('headers: ');
+                console.log(response.headers);
                 successFn(null);
                 return;
             }
