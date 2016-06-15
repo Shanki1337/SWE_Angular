@@ -113,11 +113,11 @@ System.register(['./cookie', '../shared/shared'], function(exports_1, context_1)
     }
     exports_1("isAdmin", isAdmin);
     /**
-     * @return String fuer JWT oder Basic-Authentifizierung
+     * @return String Basic-Authentifizierung
      */
     function getAuthorization() {
         'use strict';
-        return cookie_1.default.getCookie(authorization);
+        return `Basic ${shared_1.toBase64('admin', 'p')}`;
     }
     exports_1("getAuthorization", getAuthorization);
     /**

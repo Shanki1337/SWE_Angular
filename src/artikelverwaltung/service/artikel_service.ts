@@ -24,8 +24,8 @@ import {IChart, ChartDataSet, LinearChartData, CircularChartData} from 'chart.js
 import Artikel from '../model/artikel';
 import {IArtikelServer, IArtikelForm} from '../model/artikel';
 // import AbstractArtikelService from './abstract_artikel_service';
-import {ChartService, toBase64, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
-// import {getAuthorization} from '../../iam/iam';
+import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
+import {getAuthorization} from '../../iam/iam';
 /* tslint:enable:max-line-length */
 
 // Methoden der Klasse Http
@@ -177,9 +177,7 @@ export default class ArtikelService {
         console.log('body=', body);
         const headers: Headers =
             new Headers({'Content-Type': 'application/json'});
-        // BasicAuth generating
-        const authorizationValue: string = `Basic ${toBase64('admin', 'p')}`;
-        headers.append('Authorization', authorizationValue);
+        headers.append('Authorization', getAuthorization());
         // RequestOptionsArgs in
         // node_modules\angular2\ts\src\http\interfaces.ts
         const options: RequestOptionsArgs = {headers: headers};

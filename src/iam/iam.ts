@@ -139,11 +139,11 @@ export function isAdmin(): boolean {
 }
 
 /**
- * @return String fuer JWT oder Basic-Authentifizierung
+ * @return String Basic-Authentifizierung
  */
 export function getAuthorization(): string {
     'use strict';
-    return Cookie.getCookie(authorization);
+    return `Basic ${toBase64('admin', 'p')}`;
 }
 
 /**
