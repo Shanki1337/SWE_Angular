@@ -80,47 +80,55 @@ System.register([], function(exports_1, context_1) {
                  */
                 static fromForm(artikelForm) {
                     /* tslint:disable:max-line-length */
-                    console.log('fromForm');
                     var art = 'BUERO';
                     /* tslint:enable:max-line-length */
-                    console.log('fromForm, art: ' + art);
+                    var preis = 333;
+                    var rating = 3;
                     try {
                         if (artikelForm.bad.checked) {
                             art = 'BAD';
+                            console.log('bad');
                         }
                         else if (artikelForm.buero.checked) {
                             art = 'BUERO';
+                            console.log('bad');
                         }
                         else if (artikelForm.diele.checked) {
                             art = 'DIELE';
-                            console.log('hallo diele');
+                            console.log('bad');
                         }
                         else if (artikelForm.esszimmer.checked) {
                             art = 'ESSZIMMER';
+                            console.log('bad');
                         }
                         else if (artikelForm.kinderzimmer.checked) {
                             art = 'KINDERZIMMER';
+                            console.log('bad');
                         }
                         else if (artikelForm.kueche.checked) {
                             art = 'KUECHE';
+                            console.log('bad');
                         }
                         else if (artikelForm.schlafzimmer.checked) {
                             art = 'SCHLAFZIMMER';
+                            console.log('bad');
                         }
                         else if (artikelForm.wohnzimmer.checked) {
                             art = 'WOHNZIMMER';
+                            console.log('bad');
                         }
+                        preis = parseInt(artikelForm.preis, 10);
+                        rating = parseInt(artikelForm.rating, 10);
                     }
                     catch (e) {
-                        console.log('Error', e.message);
+                        console.log('Error ---- ', e.message);
                     }
-                    console.log('fromForm, art: ');
-                    console.log(art.toString());
+                    console.log('fromForm, art: ', art.toString());
                     // preis und rabatt muss von string in number konvertiert werden
-                    // parseInt(artikelForm.preis, 10)
-                    // artikelForm.ausgesondert
-                    // parseInt(artikelForm.rating, 10)
-                    const artikel = new Artikel(artikelForm.id, artikelForm.bezeichnung, 3, art, 121.22, true);
+                    console.log('preis: ', preis);
+                    console.log('ausgesondert:  ', artikelForm.ausgesondert);
+                    console.log('rating', rating);
+                    const artikel = new Artikel(artikelForm.id, artikelForm.bezeichnung, rating, art, preis, true);
                     console.log('Artikel.fromForm(): artikel=', artikel);
                     return artikel;
                 }

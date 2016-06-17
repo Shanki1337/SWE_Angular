@@ -71,49 +71,48 @@
                     -->
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" [ngFormControl]="buero" name="kategorie"
+                            <input type="radio" [ngFormControl]="kategorie" name="buero"
                                    value="BUERO"> B&uuml;ro
                         </label>
                     </div>
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" [ngFormControl]="diele" name="kategorie"
+                            <input type="radio" [ngFormControl]="kategorie" name="diele"
                                    value="DIELE"> Diele
                         </label>
                     </div>
                     <div class="radio">
                     <label class="radio-inline">
-                        <input type="radio" [ngFormControl]="esszimmer" name="kategorie"
+                        <input type="radio" [ngFormControl]="kategorie" name="esszimmer"
                                value="ESSZIMMER"> Esszimmer
                     </label>
                 </div>
-                </div>
                 <div class="radio">
                     <label class="radio-inline">
-                        <input type="radio" [ngFormControl]="kinderzimmer" name="kategorie"
+                        <input type="radio" [ngFormControl]="kategorie" name="kinderzimmer"
                                value="KINDERZIMMER"> Kinderzimmer
                     </label>
                 </div>
                     <div class="radio">
                     <label class="radio-inline">
-                        <input type="radio" [ngFormControl]="kueche" name="kategorie"
+                        <input type="radio" [ngFormControl]="kategorie" name="kueche"
                                value="KUECHE"> K&uuml;che
                     </label>
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" [ngFormControl]="schlafzimmer" name="kategorie"
+                            <input type="radio" [ngFormControl]="kategorie" name="schlafzimmer"
                                    value="SCHLAFZIMMER"> Schlafzimmer
                         </label>
                     </div>
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" [ngFormControl]="wohnzimmer" name="kategorie"
+                            <input type="radio" [ngFormControl]="kategorie" name="wohnzimmer"
                                    value="WOHNZIMMER"> Wohnzimmer
                         </label>
                     </div>
                 </div>
             </div>
-
+            </div>
             <div class="form-group row"
                  [class.text-danger]="!preis.valid && preis.touched">
                 <label for="preisInput" class="col-sm-2 form-control-label">

@@ -3,7 +3,7 @@
  */
 
 /* tslint:disable:max-line-length */
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, ControlGroup, Control} from 'angular2/common';
 import {Router, CanActivate} from 'angular2/router';
 
@@ -46,8 +46,7 @@ import {isPresent, log} from '../../../shared/shared';
 // https://github.com/angular/angular/issues/2965
 // https://github.com/angular/angular/issues/4112
 @CanActivate(isAdmin)
-export default class CreateArtikel implements OnInit,
-    OnDestroy {
+export default class CreateArtikel implements OnInit {
     form: ControlGroup;
     // Keine Vorbelegung bzw. der leere String, da es Placeholder gibt
     bezeichnung: Control = new Control('', ArtikelValidator.bezeichnung);
@@ -62,14 +61,6 @@ export default class CreateArtikel implements OnInit,
         if (!isPresent(_router)) {
             console.error('Injizierter Router:', _router);
         }
-    }
-
-    ngOnDestroy(): void {
-        console.log('CreateArtikel.onDestroy()');
-        this.form = undefined;
-        this._artikelService = undefined;
-        this._router = undefined;
-        this._formBuilder = undefined;
     }
 
     /**
