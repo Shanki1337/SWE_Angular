@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {RadioButtonState} from 'angular2/common';
 // import {isBlank, isPresent} from '../../shared/shared';
 
 /* tslint:disable:max-line-length */
@@ -35,12 +34,17 @@ const MAX_RATING: number = 5;
  * Gemeinsame Datenfelder unabh&auml;ngig, ob die Artikeldaten von einem Server
  * (z.B. RESTful Web Service) oder von einem Formular kommen.
  */
+
+/* tslint:disable:max-line-length */
+declare type KategorieType = 'BAD' | 'BUERO' | 'DIELE' | 'ESSZIMMER'
+    | 'KINDERZIMMER' | 'KUECHE' | 'SCHLAFZIMMER' | 'WOHNZIMMER';
+/* tslint:enable:max-line-length */
+
 export interface IArtikelShared {
     id?: string;
     bezeichnung: string;
-    kategorie:
-        /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER';
+    kategorie: KategorieType;
+    preis: number;
     ausgesondert?: boolean;
     /* tslint:enable:max-line-length */
 }
@@ -54,10 +58,7 @@ export interface IArtikelShared {
  *       String handhabbar sind.
  * </ul>
  */
-export interface IArtikelServer extends IArtikelShared {
-    preis: number;
-    rating?: number;
-}
+export interface IArtikelServer extends IArtikelShared { rating?: number; }
 
 
 
@@ -68,18 +69,7 @@ export interface IArtikelServer extends IArtikelShared {
  *  <li> au&szlig;erdem Strings f&uuml;r Eingabefelder f&uuml;r Zahlen.
  * </ul>
  */
-export interface IArtikelForm extends IArtikelShared {
-    preis: string;
-    rating?: string;
-    bad: RadioButtonState;
-    buero: RadioButtonState;
-    diele: RadioButtonState;
-    esszimmer: RadioButtonState;
-    kinderzimmer: RadioButtonState;
-    kueche: RadioButtonState;
-    schlafzimmer: RadioButtonState;
-    wohnzimmer: RadioButtonState;
-}
+export interface IArtikelForm extends IArtikelShared { rating: string; }
 
 /**
  * Model als Plain-Old-JavaScript-Object (POJO) fuer die Daten *UND*
@@ -92,10 +82,8 @@ export default class Artikel {
     // Buch.fromForm
     constructor(
         public id: string, public bezeichnung: string, public rating: number,
-        public kategorie:
-            /* tslint:disable:max-line-length */
-        'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER',
-        public preis: number, public ausgesondert: boolean) {
+        public kategorie: KategorieType, public preis: number,
+        public ausgesondert: boolean) {
         this.id = id || null;
         this.bezeichnung = bezeichnung || null;
         this.rating = rating || null;
@@ -131,51 +119,16 @@ export default class Artikel {
      * @return Das initialisierte Buch-Objekt
      */
     static fromForm(artikelForm: IArtikelForm): Artikel {
-        /* tslint:disable:max-line-length */
-        var art:
-            'BAD'|'BUERO'|'DIELE'|'ESSZIMMER'|'KINDERZIMMER'|'KUECHE'|'SCHLAFZIMMER'|'WOHNZIMMER' =
-                'BUERO';
-        /* tslint:enable:max-line-length */
-        var preis: number = 333;
-        var rating: number = 3;
-        try {
-            if (artikelForm.bad.checked) {
-                art = 'BAD';
-                console.log('bad');
-            } else if (artikelForm.buero.checked) {
-                art = 'BUERO';
-                console.log('bad');
-            } else if (artikelForm.diele.checked) {
-                art = 'DIELE';
-                console.log('bad');
-            } else if (artikelForm.esszimmer.checked) {
-                art = 'ESSZIMMER';
-                console.log('bad');
-            } else if (artikelForm.kinderzimmer.checked) {
-                art = 'KINDERZIMMER';
-                console.log('bad');
-            } else if (artikelForm.kueche.checked) {
-                art = 'KUECHE';
-                console.log('bad');
-            } else if (artikelForm.schlafzimmer.checked) {
-                art = 'SCHLAFZIMMER';
-                console.log('bad');
-            } else if (artikelForm.wohnzimmer.checked) {
-                art = 'WOHNZIMMER';
-                console.log('bad');
-            }
-            preis = parseInt(artikelForm.preis, 10);
-            rating = parseInt(artikelForm.rating, 10);
-        } catch (e) {
-            console.log('Error ---- ', e.message);
-        }
-        console.log('fromForm, art: ', art.toString());
+        console.log(artikelForm);
+        // preis = parseInt(artikelForm.preis, 10);
+        var rating: number = parseInt(artikelForm.rating, 10);
         // preis und rabatt muss von string in number konvertiert werden
-        console.log('preis: ', preis);
+        console.log('preis: ', artikelForm.preis);
         console.log('ausgesondert:  ', artikelForm.ausgesondert);
         console.log('rating', rating);
         const artikel: Artikel = new Artikel(
-            artikelForm.id, artikelForm.bezeichnung, rating, art, preis, true);
+            artikelForm.id, artikelForm.bezeichnung, rating,
+            artikelForm.kategorie, artikelForm.preis, artikelForm.ausgesondert);
         console.log('Artikel.fromForm(): artikel=', artikel);
         return artikel;
     }

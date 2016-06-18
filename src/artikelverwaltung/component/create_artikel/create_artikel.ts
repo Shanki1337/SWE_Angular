@@ -111,7 +111,7 @@ export default class CreateArtikel implements OnInit {
                 /* tslint:disable:max-line-length */
                 `CreateArtikel.save(): successFn(): navigate: ${APP_ROUTES.homeDef.name}`);
             /* tslint:enable:max-line-length */
-            this._router.navigate([APP_ROUTES.homeDef.name]);
+            // this._router.navigate([APP_ROUTES.homeDef.name]);
         };
         const errorFn: (status: number, text: string) => void =
             (status: number, text: string = null): void => {

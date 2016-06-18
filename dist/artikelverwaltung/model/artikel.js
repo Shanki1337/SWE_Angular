@@ -79,56 +79,14 @@ System.register([], function(exports_1, context_1) {
                  * @return Das initialisierte Buch-Objekt
                  */
                 static fromForm(artikelForm) {
-                    /* tslint:disable:max-line-length */
-                    var art = 'BUERO';
-                    /* tslint:enable:max-line-length */
-                    var preis = 333;
-                    var rating = 3;
-                    try {
-                        if (artikelForm.bad.checked) {
-                            art = 'BAD';
-                            console.log('bad');
-                        }
-                        else if (artikelForm.buero.checked) {
-                            art = 'BUERO';
-                            console.log('bad');
-                        }
-                        else if (artikelForm.diele.checked) {
-                            art = 'DIELE';
-                            console.log('bad');
-                        }
-                        else if (artikelForm.esszimmer.checked) {
-                            art = 'ESSZIMMER';
-                            console.log('bad');
-                        }
-                        else if (artikelForm.kinderzimmer.checked) {
-                            art = 'KINDERZIMMER';
-                            console.log('bad');
-                        }
-                        else if (artikelForm.kueche.checked) {
-                            art = 'KUECHE';
-                            console.log('bad');
-                        }
-                        else if (artikelForm.schlafzimmer.checked) {
-                            art = 'SCHLAFZIMMER';
-                            console.log('bad');
-                        }
-                        else if (artikelForm.wohnzimmer.checked) {
-                            art = 'WOHNZIMMER';
-                            console.log('bad');
-                        }
-                        preis = parseInt(artikelForm.preis, 10);
-                        rating = parseInt(artikelForm.rating, 10);
-                    }
-                    catch (e) {
-                        console.log('Error ---- ', e.message);
-                    }
-                    console.log('fromForm, art: ', art.toString());
+                    console.log(artikelForm);
+                    // preis = parseInt(artikelForm.preis, 10);
+                    var rating = parseInt(artikelForm.rating, 10);
                     // preis und rabatt muss von string in number konvertiert werden
-                    console.log('preis: ', preis);
+                    console.log('preis: ', artikelForm.preis);
                     console.log('ausgesondert:  ', artikelForm.ausgesondert);
                     console.log('rating', rating);
-                    const artikel = new Artikel(artikelForm.id, artikelForm.bezeichnung, rating, art, preis, true);
+                    const artikel = new Artikel(artikelForm.id, artikelForm.bezeichnung, rating, artikelForm.kategorie, artikelForm.preis, artikelForm.ausgesondert);
                     console.log('Artikel.fromForm(): artikel=', artikel);
                     return artikel;
                 }
