@@ -37,3 +37,4 @@ export const BASE_URI: string = `${SCHEME}://${SERVERNAME}:${PORT}${BASE_PATH}`;
 export const PATH_KATALOG: string = `katalog`;
 export const PATH_ARTIKEL: string = `artikel`;
 export const PATH_BUECHER: string = `buecher`;
+export const PATH_POS: string = PATH_ARTIKEL + `/` + `ratingStats`;
