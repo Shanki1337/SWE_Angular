@@ -24,7 +24,7 @@ import {IChart, ChartDataSet, LinearChartData, CircularChartData} from 'chart.js
 import Artikel from '../model/artikel';
 import {IArtikelServer, IArtikelForm} from '../model/artikel';
 // import AbstractArtikelService from './abstract_artikel_service';
-import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
+import {ChartService, BASE_URI, PATH_ARTIKEL, PATH_KATALOG, PATH_POS, isBlank, isPresent, isEmpty, log} from '../../shared/shared';
 import {getAuthorization} from '../../iam/iam';
 /* tslint:enable:max-line-length */
 
@@ -47,6 +47,7 @@ import {getAuthorization} from '../../iam/iam';
 export default class ArtikelService {
     private _baseUriArtikel: string;
     private _baseUriKatalog: string;
+    private _baseUriPos: string;
     private _artikelzEmitter: EventEmitter<Array<Artikel>> =
         new EventEmitter<Array<Artikel>>();
     private _artikelEmitter: EventEmitter<Artikel> =
@@ -65,9 +66,11 @@ export default class ArtikelService {
         @Inject(Http) private _http: Http) {
         this._baseUriArtikel = `${BASE_URI}${PATH_ARTIKEL}`;
         this._baseUriKatalog = `${BASE_URI}${PATH_KATALOG}`;
+        this._baseUriPos = `${BASE_URI}${PATH_POS}`;
         console.log(`ArtikelService.constructor(): 
                 baseUriArtikel${this._baseUriArtikel}
-                baseUriKatalog${this._baseUriKatalog}`);
+                baseUriKatalog${this._baseUriKatalog}
+                baseUriPos${this._baseUriPos}`);
     }
 
     /**
@@ -132,6 +135,31 @@ export default class ArtikelService {
         };
 
         this._http.get(uri, {search: searchParams}).subscribe(nextFn, errorFn);
+    }
+
+    @log
+    findAll(): void {
+        const uri: string = `${this._baseUriPos}`;
+        const headers: Headers =
+            new Headers({'Content-Type': 'application/json'});
+        headers.append('Authorization', getAuthorization());
+        // RequestOptionsArgs in
+        // node_modules\angular2\ts\src\http\interfaces.ts
+        const options: RequestOptionsArgs = {headers: headers};
+        console.log('options=', options);
+        const nextFn: ((response: Response) => void) = (response: Response) => {
+            console.log(`ArtikelService.findAll(): nextFn()`);
+            let artikel: Array<Artikel> =
+                this._responseToArrayArtikel(response);
+            this._artikelzEmitter.emit(artikel);
+        };
+        const errorFn: (err: Response) => void = (err: Response) => {
+            const status: number = err.status;
+            console.log(`ArtikelService.findAll(): errorFn(): ${status}`);
+            this._errorEmitter.emit(status);
+        };
+
+        this._http.get(uri, options).subscribe(nextFn, errorFn);
     }
 
     /**

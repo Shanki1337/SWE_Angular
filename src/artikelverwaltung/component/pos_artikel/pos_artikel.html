@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header bg-primary">
+        <h4>Artikelliste</h4>
+    </div>
+    <div class="card-block">
+        <div class="row" *ngIf="artikel != null">
+            <div class="col-md-4" *ngFor="#a of artikel; #i = index">
+                <dl class="dl-horizontal">
+                    <dt>Bezeichnung</dt>
+                    <dd>{{a.bezeichnung}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Kategorie</dt>
+                    <dd>
+                    <span [ngSwitch]="a.kategorie">
+                        <span *ngSwitchWhen="'BAD'">BAD</span>
+                        <span *ngSwitchWhen="'BUERO'">BUERO</span>
+                        <span *ngSwitchWhen="'DIEHLE'">DIEHLE</span>
+                        <span *ngSwitchWhen="'ESSZIMMER'">ESSZIMMER</span>
+                        <span *ngSwitchWhen="'KINDERZIMMER'">KINDERZIMMER</span>
+                        <span *ngSwitchWhen="'KUECHE'">KUECHE</span>
+                        <span *ngSwitchWhen="'SCHLAFZIMMER'">SCHLAFZIMMER</span>
+                        <span *ngSwitchWhen="'WOHNZIMMER'">WOHNZIMMER</span>
+                        <span *ngSwitchDefault>unbekannt</span>
+                    </span>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Bewertung</dt>
+                    <dd>
+                        <span *ngFor="#a of a.ratingArray">
+                        <i class="fa fa-star" style="color: yellow;"
+                            *ngIf="a === true"></i>
+                        </span>
+                        <i *ngIf="a.ratingArray[0] === false">Keine Bewertung vorhanden.
+                        </i>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Preis</dt>
+                    <dd>{{a.preis}}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
