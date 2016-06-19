@@ -40,10 +40,6 @@ import {log} from '../shared/shared';
                             tabindex="1" autocomplete="off"
                             [(ngModel)]="username">
                     </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-primary" tabindex="3">
-                        &nbsp; Login</button>
-                    </div>
                 </div>
 
                 <div class="form-group row">
@@ -54,6 +50,12 @@ import {log} from '../shared/shared';
                             type="password" class="form-control"
                             tabindex="2" autocomplete="off"
                             [(ngModel)]="password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary" tabindex="3">
+                        &nbsp; Login</button>
                     </div>
                 </div>
             </form>

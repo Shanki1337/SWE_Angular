@@ -28,44 +28,37 @@ import {isAdmin} from '../iam/iam';
     // Internationalisierung durch z.B. https://github.com/ocombe/ng2-translate
     template: `
         <nav class="col-xs-12 col-sm-4 col-md-3 col-lg-3 col-xl-3 jz-app-nav">
-            <!-- http://v4-alpha.getbootstrap.com/components/list-group/#linked-items -->
-            <!-- Alternative CSS-Klassen fuer list-group: navs, nav-item, nav-link -->
-            <!-- http://v4-alpha.getbootstrap.com/components/navs -->
-            <div class="list-group">
-                <!-- DSL-Pfade durch @RouteConfig([{path: '/...', name: 'Home' ...} -->
-                <div class="list-group-item">
-                    <a [routerLink]="['Home']">
-                        <i class="fa fa-home"></i> &nbsp; Startseite
-                    </a>
-                </div>
-                <div class="list-group-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['SucheArtikel']">
-                        <i class="fa fa-search"></i> &nbsp; Suche Artikel
-                    </a>
-                </div>
-                <div class="list-group-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['SucheArtikelId']">
-                        <i class="fa fa-search"></i> &nbsp; Suche Artikel nach ID
-                    </a>
-                </div>
-                <div class="list-group-item" *ngIf="isAdmin()">
-                    <a [routerLink]="['CreateArtikel']">
-                        <i class="fa fa-search"></i> &nbsp; Artikel erstellen
-                    </a>
+            <div class="m-t-1">
+                <div class="list-group">
+                    <div class="list-group-item" [hidden]="isAdmin()">
+                        <i class="fa fa-sign-in"></i> &nbsp; Menü nur für 
+                        angemeldete Benutzer sichtbar.
+                    </div>
+                    <div class="list-group-item" *ngIf="isAdmin()">
+                        <a [routerLink]="['SucheArtikel']">
+                            <i class="fa fa-search"></i> &nbsp; Suche Artikel
+                        </a>
+                    </div>
+                    <div class="list-group-item" *ngIf="isAdmin()">
+                        <a [routerLink]="['SucheArtikelId']">
+                            <i class="fa fa-search"></i> &nbsp; Suche Artikel
+                            nach ID
+                        </a>
+                    </div>
+                    <div class="list-group-item" *ngIf="isAdmin()">
+                        <a [routerLink]="['CreateArtikel']">
+                            <i class="fa fa-plus-square"></i> &nbsp; Artikel
+                            erstellen
+                        </a>
+                    </div>
+                    <div class="list-group-item" *ngIf="isAdmin()">
+                        <a [routerLink]="['PosArtikel']">
+                            <i class="fa fa-list-alt"></i> &nbsp; Artikelliste
+                            anzeigen
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <!-- DSL-Pfade durch @RouteConfig([{path: '/...', name: 'Home' ...} -->
-            <!--
-            <ul class="nav nav-pills nav-stacked">
-                <li class="nav-item"><a [routerLink]="['Home']">
-                    <i class="fa fa-home"></i> &nbsp; Startseite</a>
-                </li>
-                <li class="nav-item"><a [routerLink]="['SucheArtikel']">
-                    <i class="fa fa-search"></i> &nbsp; Suche Artikel</a>
-                </li>
-            </ul>
-            -->
         </nav>
     `,
     styleUrls: ['./app/nav.min.css'],

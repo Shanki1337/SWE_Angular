@@ -24,7 +24,7 @@ import {Component} from 'angular2/core';
     selector: 'home',
     template: `
         <h2>Herzlich Willkommen</h2>
-        <p>Zum Projekt von Shanki Berger, Sven Baummann, 
+        <p>Zum Projekt von Shanki Berger, Sven Baumann, 
         Fabian Birke und Jannick Weichert!</p>
     `
 })

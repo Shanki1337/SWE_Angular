@@ -15,12 +15,10 @@
 
 @import '../sass/colors';
 
-$gradient: url(/img/gradientBlueSky.png);
-
 // Vorsicht bei CSS-Selektoren: durch Namespaces koennen Kollisionen vermieden werden
 .jz-app-header {
-    background-color: $background-color;
+    background-color: $lightGrey;
     background-position: left top;
     background-repeat: repeat-x;
-    background-image: $gradient;
+    border-bottom: 1px solid $darkGrey;
 }

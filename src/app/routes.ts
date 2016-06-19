@@ -25,6 +25,7 @@ import DetailsArtikel from
 import SucheArtikel from '../artikelverwaltung/component/suche_artikel/suche_artikel';
 import SucheArtikelId from '../artikelverwaltung/component/suche_artikel_id/suche_artikel_id';
 import CreateArtikel from '../artikelverwaltung/component/create_artikel/create_artikel';
+import PosArtikel from '../artikelverwaltung/component/pos_artikel/pos_artikel';
 
 /* tslint:enable:max-line-length */
 
@@ -55,6 +56,8 @@ const APP_ROUTES: any = {
         name: 'CreateArtikel',
         component: CreateArtikel
     },
+    posArtikelDef:
+        {path: '/posArtikel', name: 'PosArtikel', component: PosArtikel},
     redirect: {path: '/', redirectTo: ['Home']}
 };
 export default APP_ROUTES;

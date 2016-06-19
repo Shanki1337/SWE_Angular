@@ -27,10 +27,12 @@ import {log} from '../shared/shared';
 @Component({
     selector: 'logout',
     template: `
-        <div *ngIf="isLoggedIn()">
-            <button class="btn btn-default" type="button" (click)="logout()">
-                Logout
-            </button>
+        <div class="card-block" *ngIf="isLoggedIn()">
+            <div class="form-group row">
+                <button class="btn btn-default" type="button" (click)="logout()">
+                    Logout
+                </button>
+            </div>
         </div>
     `,
     directives: [CORE_DIRECTIVES]
